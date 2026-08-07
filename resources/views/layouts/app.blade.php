@@ -94,31 +94,34 @@
     ==================================================== --}}
     <header class="sticky top-0 z-[1000] shadow-lg transition-all">
 
-        {{-- RUNNING TEXT TICKER (INSTANTLY VISIBLE, SEAMLESS MARQUEE) --}}
-        <div class="bg-slate-950 text-white border-b border-blue-900/60 py-2 overflow-hidden relative shadow-inner">
-            <div class="container-sid flex items-center">
-                <div class="bg-gradient-to-r from-amber-400 to-amber-500 text-amber-950 font-black text-[11px] uppercase tracking-wider px-3.5 py-1 rounded-lg flex items-center gap-1.5 shrink-0 shadow-md z-10 mr-4">
-                    <span class="animate-pulse">📢</span> PENGUMUMAN
+        {{-- BULLETPROOF TOP BAR MARQUEE TICKER (ALWAYS VISIBLE & PERFECT MARQUEE) --}}
+        <div class="bg-slate-950 text-white border-b border-blue-900/60 py-1.5 relative z-50">
+            <div class="container-sid flex items-center gap-3">
+                {{-- Ticker Badge --}}
+                <div class="bg-gradient-to-r from-amber-400 to-amber-500 text-amber-950 font-black text-[11px] uppercase tracking-wider px-3.5 py-1 rounded-lg flex items-center gap-1.5 shrink-0 shadow-md">
+                    <span class="animate-pulse">📢</span>
+                    <span>PENGUMUMAN</span>
                 </div>
-                <div class="overflow-hidden flex-1 relative">
-                    @php
-                        $tickerItems = \App\Models\Announcement::ticker()->orderByDesc('updated_at')->limit(8)->get();
-                    @endphp
-                    <div class="animate-marquee whitespace-nowrap inline-block font-semibold text-xs text-blue-100">
-                        @if($tickerItems->isEmpty())
-                            <span class="inline-block mr-12">• Selamat datang di Platform Portal Digital Desa (Smart Village System)</span>
-                            <span class="inline-block mr-12">• Melayani dengan Hati, Membangun Bersama Warga</span>
-                            <span class="inline-block mr-12">• Layanan Mandiri Warga Digital 24 Jam Nonstop</span>
-                            <span class="inline-block mr-12">• Selamat datang di Platform Portal Digital Desa (Smart Village System)</span>
+
+                {{-- Native Marquee Component --}}
+                <div class="flex-1 overflow-hidden font-medium text-xs text-blue-100 dark:text-slate-200">
+                    <marquee behavior="scroll" direction="left" scrollamount="4" onmouseover="this.stop();" onmouseout="this.start();" class="py-0.5">
+                        @php
+                            $tickerAnnouncements = \App\Models\Announcement::ticker()->orderByDesc('updated_at')->limit(8)->get();
+                        @endphp
+                        @if($tickerAnnouncements->isEmpty())
+                            <span class="mx-6 font-semibold text-amber-300">• Selamat datang di Platform Portal Digital Desa (Smart Village System)</span>
+                            <span class="mx-6 text-blue-200">• Melayani dengan Hati, Membangun Bersama Warga</span>
+                            <span class="mx-6 font-semibold text-amber-300">• Layanan Mandiri Warga Digital 24 Jam Nonstop</span>
+                            <span class="mx-6 text-blue-200">• Informasi Publikasi Resmi Kalurahan Digital</span>
                         @else
-                            @foreach($tickerItems as $item)
-                                <span class="inline-block mr-12">• {{ $item->title }}</span>
-                            @endforeach
-                            @foreach($tickerItems as $item)
-                                <span class="inline-block mr-12">• {{ $item->title }}</span>
+                            @foreach($tickerAnnouncements as $ann)
+                                <span class="mx-6 font-semibold text-slate-100">
+                                    <span class="text-amber-400 mr-1.5">•</span>{{ $ann->title }}
+                                </span>
                             @endforeach
                         @endif
-                    </div>
+                    </marquee>
                 </div>
             </div>
         </div>
@@ -130,7 +133,7 @@
             aria-label="Navigasi Utama"
         >
             <div class="container-sid">
-                <div class="flex items-center justify-between py-3">
+                <div class="flex items-center justify-between py-2.5">
 
                     {{-- Brand Logo & Title --}}
                     <a href="{{ route('home') }}" class="navbar-brand flex items-center gap-3.5 group" aria-label="Beranda Desa">
@@ -173,7 +176,7 @@
                                     ['label' => 'Kependudukan', 'desc' => 'Grafik demografi warga', 'route' => 'statistik.kependudukan', 'icon' => '👥'],
                                     ['label' => 'IDM Dashboard', 'desc' => 'Indeks Desa Membangun', 'route' => 'statistik.idm', 'icon' => '📈'],
                                     ['label' => 'SDGs Desa', 'desc' => '18 Tujuan Pembangunan', 'route' => 'statistik.sdgs', 'icon' => '🌐'],
-                                    ['label' => 'Peta Interaktif', 'desc' => 'Peta spasial fasiliti desa', 'route' => 'peta', 'icon' => '📍'],
+                                    ['label' => 'Peta Interaktif', 'desc' => 'Peta spasial fasilitas desa', 'route' => 'peta', 'icon' => '📍'],
                                 ]],
                                 ['label' => 'Transparansi', 'route' => '#', 'children' => [
                                     ['label' => 'APBDes 2025', 'desc' => 'Anggaran pendapatan & belanja', 'route' => 'transparansi.apbkal', 'icon' => '💰'],
