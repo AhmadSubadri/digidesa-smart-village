@@ -357,85 +357,85 @@
 </section>
 
 {{-- ============================================================
-     UPCOMING EVENTS + ANNOUNCEMENTS (2-col)
+     UPCOMING EVENTS + ANNOUNCEMENTS (2-Col Modern Dark Container)
 ============================================================ --}}
-<section class="section-py bg-gradient-to-br from-blue-950 to-blue-900" aria-labelledby="events-title">
+<section class="section-py bg-slate-900 dark:bg-slate-950 text-white rounded-3xl my-8 p-6 sm:p-10 border border-slate-800 shadow-2xl" aria-labelledby="events-title">
     <div class="container-sid">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
             {{-- Events Column --}}
             <div class="reveal reveal-left">
-                <div class="section-header-label text-blue-300">Jadwal Kegiatan</div>
-                <h2 id="events-title" class="section-title text-white mb-6">Agenda Mendatang</h2>
+                <div class="text-amber-400 font-extrabold text-xs uppercase tracking-widest mb-1">Jadwal & Acara</div>
+                <h2 id="events-title" class="text-white font-black text-2xl sm:text-3xl mb-6">Agenda Mendatang</h2>
 
-                <div class="space-y-3">
+                <div class="space-y-3.5">
                     @forelse($upcomingEvents as $event)
                     <a href="{{ route('agenda.show', $event->slug) }}"
-                       class="flex gap-4 glass rounded-xl p-4 hover:bg-white/15 transition-all group"
+                       class="flex gap-4 bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 rounded-2xl p-4 transition-all duration-300 group hover:-translate-y-1 shadow-md"
                        id="event-{{ $event->id }}">
                         {{-- Date Box --}}
                         <div class="shrink-0 w-14 text-center">
-                            <div class="bg-amber-400 text-amber-900 font-black text-xl leading-none rounded-t-lg py-1">
+                            <div class="bg-gradient-to-r from-amber-400 to-amber-500 text-amber-950 font-black text-xl leading-none rounded-t-xl py-1.5 shadow-sm">
                                 {{ $event->start_datetime->format('d') }}
                             </div>
-                            <div class="bg-amber-500/30 text-amber-200 text-xs font-semibold rounded-b-lg py-1">
+                            <div class="bg-amber-500/20 text-amber-300 text-xs font-extrabold rounded-b-xl py-1 border-t border-amber-500/30">
                                 {{ $event->start_datetime->translatedFormat('M') }}
                             </div>
                         </div>
                         {{-- Info --}}
                         <div class="flex-1 min-w-0">
-                            <h3 class="text-white font-semibold text-sm leading-tight group-hover:text-amber-300 transition-colors line-clamp-2">
+                            <h3 class="text-white font-bold text-sm sm:text-base leading-snug group-hover:text-amber-300 transition-colors line-clamp-2">
                                 {{ $event->title }}
                             </h3>
-                            <div class="flex items-center gap-2 text-blue-300 text-xs mt-1.5">
-                                <svg class="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <div class="flex items-center gap-2 text-blue-200 text-xs font-semibold mt-2">
+                                <svg class="w-3.5 h-3.5 shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                 </svg>
                                 <span>{{ $event->start_datetime->format('H:i') }} WIB</span>
                                 @if($event->location)
                                 <span>•</span>
-                                <svg class="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg class="w-3.5 h-3.5 shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                                 </svg>
                                 <span class="truncate">{{ $event->location }}</span>
                                 @endif
                             </div>
                         </div>
-                        <svg class="w-4 h-4 text-blue-400 shrink-0 mt-1 group-hover:text-amber-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        <svg class="w-5 h-5 text-blue-400 shrink-0 my-auto group-hover:text-amber-300 group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
                         </svg>
                     </a>
                     @empty
-                    <div class="glass rounded-xl p-8 text-center text-blue-300">
-                        <svg class="w-12 h-12 mx-auto mb-3 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div class="bg-slate-800/60 rounded-2xl p-8 text-center text-blue-200 border border-slate-700/60">
+                        <svg class="w-12 h-12 mx-auto mb-3 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                         </svg>
-                        <p class="text-sm">Belum ada agenda mendatang</p>
+                        <p class="text-sm font-semibold">Belum ada agenda mendatang</p>
                     </div>
                     @endforelse
                 </div>
 
-                <div class="mt-4">
-                    <a href="{{ route('agenda.index') }}" class="btn btn-secondary text-sm">
+                <div class="mt-6">
+                    <a href="{{ route('agenda.index') }}" class="btn btn-secondary text-xs font-extrabold border-slate-700 hover:border-amber-400 text-white">
                         Lihat Semua Agenda
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                     </a>
                 </div>
             </div>
 
             {{-- Announcements Column --}}
             <div class="reveal reveal-right">
-                <div class="section-header-label text-blue-300">Informasi Resmi</div>
-                <h2 class="section-title text-white mb-6">Pengumuman</h2>
+                <div class="text-amber-400 font-extrabold text-xs uppercase tracking-widest mb-1">Informasi Resmi</div>
+                <h2 class="text-white font-black text-2xl sm:text-3xl mb-6">Pengumuman Edaran</h2>
 
-                <div class="space-y-3">
+                <div class="space-y-3.5">
                     @forelse($pinnedAnnouncements as $ann)
                     <a href="{{ route('pengumuman.show', $ann->id) }}"
-                       class="flex gap-3 glass rounded-xl p-4 hover:bg-white/15 transition-all group"
+                       class="flex gap-4 bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 rounded-2xl p-4 transition-all duration-300 group hover:-translate-y-1 shadow-md"
                        id="announcement-{{ $ann->id }}">
-                        <div class="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center mt-0.5
-                            {{ $ann->priority === 'urgent' ? 'bg-red-500/30 text-red-300' : ($ann->priority === 'important' ? 'bg-amber-500/30 text-amber-300' : 'bg-blue-500/30 text-blue-300') }}">
-                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div class="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center mt-0.5
+                            {{ $ann->priority === 'urgent' ? 'bg-red-500/20 text-red-300 border border-red-500/40' : ($ann->priority === 'important' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'bg-blue-500/20 text-blue-300 border border-blue-500/40') }}">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 @if($ann->priority === 'urgent')
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
                                 @else
@@ -444,33 +444,33 @@
                             </svg>
                         </div>
                         <div class="flex-1 min-w-0">
-                            <h3 class="text-white font-semibold text-sm leading-snug line-clamp-2 group-hover:text-amber-300 transition-colors">
+                            <h3 class="text-white font-bold text-sm sm:text-base leading-snug line-clamp-2 group-hover:text-amber-300 transition-colors">
                                 {{ $ann->title }}
                             </h3>
-                            <div class="flex items-center gap-2 mt-1">
+                            <div class="flex items-center gap-2 mt-1.5">
                                 @if($ann->priority === 'urgent')
-                                <span class="badge badge-danger text-xs">Urgent</span>
+                                <span class="bg-red-500/20 text-red-300 font-extrabold text-[10px] px-2.5 py-0.5 rounded-full border border-red-500/40">Urgent</span>
                                 @elseif($ann->priority === 'important')
-                                <span class="badge badge-warning text-xs">Penting</span>
+                                <span class="bg-amber-500/20 text-amber-300 font-extrabold text-[10px] px-2.5 py-0.5 rounded-full border border-amber-500/40">Penting</span>
                                 @endif
-                                <span class="text-blue-400 text-xs">{{ $ann->updated_at->diffForHumans() }}</span>
+                                <span class="text-blue-300 text-xs font-medium">🕒 {{ $ann->updated_at->diffForHumans() }}</span>
                             </div>
                         </div>
-                        <svg class="w-4 h-4 text-blue-400 shrink-0 mt-1 group-hover:text-amber-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        <svg class="w-5 h-5 text-blue-400 shrink-0 my-auto group-hover:text-amber-300 group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
                         </svg>
                     </a>
                     @empty
-                    <div class="glass rounded-xl p-8 text-center text-blue-300">
-                        <p class="text-sm">Belum ada pengumuman terbaru</p>
+                    <div class="bg-slate-800/60 rounded-2xl p-8 text-center text-blue-200 border border-slate-700/60">
+                        <p class="text-sm font-semibold">Belum ada pengumuman terbaru</p>
                     </div>
                     @endforelse
                 </div>
 
-                <div class="mt-4">
-                    <a href="{{ route('pengumuman.index') }}" class="btn btn-secondary text-sm">
+                <div class="mt-6">
+                    <a href="{{ route('pengumuman.index') }}" class="btn btn-secondary text-xs font-extrabold border-slate-700 hover:border-amber-400 text-white">
                         Lihat Semua Pengumuman
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                     </a>
                 </div>
             </div>
@@ -479,27 +479,27 @@
 </section>
 
 {{-- ============================================================
-     GALLERY SECTION
+     GALLERY SECTION (Galeri Kegiatan)
 ============================================================ --}}
 @if($latestAlbums->isNotEmpty())
 <section class="section-py" aria-labelledby="gallery-title">
     <div class="container-sid">
-        <div class="section-header">
+        <div class="section-header mb-8">
             <div class="section-header-left">
-                <div class="section-header-label">Dokumentasi</div>
-                <h2 id="gallery-title" class="section-title">Galeri Kegiatan</h2>
-                <p class="section-subtitle">Momen berkesan kegiatan Kalurahan Condongcatur</p>
+                <div class="section-header-label text-blue-600 dark:text-blue-400 font-extrabold text-xs uppercase tracking-widest">Dokumentasi</div>
+                <h2 id="gallery-title" class="section-title text-main-title">Galeri & Visual Kegiatan</h2>
+                <p class="section-subtitle text-muted-desc">Dokumentasi momen kegiatan dan program kerja desa</p>
             </div>
-            <a href="{{ route('galeri.index') }}" class="btn btn-outline hidden sm:flex shrink-0">
-                Lihat Semua
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            <a href="{{ route('galeri.index') }}" class="btn btn-outline hidden sm:flex shrink-0 font-extrabold">
+                Lihat Semua Galeri
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
         </div>
 
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 stagger-children">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 stagger-children">
             @foreach($latestAlbums as $album)
             <a href="{{ route('galeri.show', $album->slug) }}"
-               class="group relative overflow-hidden rounded-2xl aspect-square"
+               class="group relative overflow-hidden rounded-3xl aspect-square border border-slate-200/80 dark:border-slate-800 shadow-xl"
                id="album-{{ $album->id }}">
                 <img
                     src="{{ $album->cover_image ? Storage::url($album->cover_image) : 'https://picsum.photos/400/400?random=' . $loop->index + 20 }}"
@@ -507,10 +507,12 @@
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"
                 >
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <p class="text-white font-semibold text-sm line-clamp-2">{{ $album->title }}</p>
-                    <p class="text-white/70 text-xs mt-0.5">{{ $album->media_count ?? '—' }} foto</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-300"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+                    <p class="text-white font-bold text-sm sm:text-base line-clamp-2 leading-snug drop-shadow-md group-hover:text-amber-300 transition-colors">{{ $album->title }}</p>
+                    <p class="text-amber-300 text-xs font-semibold mt-1 flex items-center gap-1">
+                        🖼️ <span>{{ $album->media_count ?? '—' }} Foto</span>
+                    </p>
                 </div>
             </a>
             @endforeach
@@ -520,21 +522,22 @@
 @endif
 
 {{-- ============================================================
-     VILLAGE LEADERSHIP
+     VILLAGE LEADERSHIP (Pimpinan & Perangkat Desa)
 ============================================================ --}}
-<section class="section-py bg-gradient-to-br from-slate-50 to-blue-50" aria-labelledby="officials-title">
+<section class="section-py relative overflow-hidden" aria-labelledby="officials-title">
     <div class="container-sid">
+        {{-- Section Header --}}
         <div class="text-center mb-10">
-            <div class="section-header-label justify-center">Kepemimpinan</div>
-            <h2 id="officials-title" class="section-title">Pimpinan & Perangkat Kalurahan</h2>
-            <p class="section-subtitle">Melayani warga Condongcatur dengan penuh dedikasi</p>
+            <div class="section-header-label">Kepemimpinan</div>
+            <h2 id="officials-title" class="section-title text-main-title">Pimpinan & Perangkat Desa</h2>
+            <p class="section-subtitle text-muted-desc max-w-xl mx-auto">Aparatur pemerintahan {{ \App\Services\SettingService::getValue('village_name', 'Pemerintah Desa') }} yang melayani warga dengan dedikasi & profesionalisme</p>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 stagger-children">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5 stagger-children">
             @forelse($officials as $official)
-            <div class="text-center group reveal" id="official-{{ $official->id }}">
+            <div class="card-box-light rounded-2xl p-4 text-center group reveal hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-xl" id="official-{{ $official->id }}">
                 <div class="relative w-24 h-24 mx-auto mb-3">
-                    <div class="w-24 h-24 rounded-2xl overflow-hidden bg-gradient-to-br from-blue-100 to-blue-200">
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden bg-gradient-to-br from-blue-50 to-slate-100 border-2 border-blue-500/30 dark:border-blue-400/30 shadow-md">
                         <img
                             src="{{ $official->photo_path ? Storage::url($official->photo_path) : 'https://ui-avatars.com/api/?name=' . urlencode($official->name) . '&background=1B4F8A&color=fff&size=200&bold=true' }}"
                             alt="{{ $official->name }}"
@@ -543,96 +546,99 @@
                         >
                     </div>
                     @if($loop->first)
-                    <div class="absolute -top-1 -right-1 w-6 h-6 bg-amber-400 rounded-full flex items-center justify-center">
-                        <svg class="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    <div class="absolute -top-1.5 -right-1.5 w-7 h-7 bg-amber-400 text-amber-950 rounded-full flex items-center justify-center shadow-lg border-2 border-white dark:border-slate-900 font-bold text-xs">
+                        ⭐
                     </div>
                     @endif
                 </div>
-                <h3 class="font-semibold text-sm text-gray-800 leading-tight">{{ $official->name }}</h3>
-                <p class="text-xs text-blue-600 font-medium mt-0.5 leading-snug">{{ $official->position }}</p>
+                <h3 class="text-main-title font-extrabold text-xs sm:text-sm leading-tight line-clamp-1 group-hover:text-blue-600 transition-colors">{{ $official->name }}</h3>
+                <p class="official-badge font-extrabold text-[11px] mt-1.5 leading-snug px-2.5 py-0.5 rounded-full inline-block">{{ $official->position }}</p>
             </div>
             @empty
-            <div class="col-span-full text-center text-gray-500 py-8">
-                Data perangkat belum tersedia.
+            <div class="col-span-full text-center text-muted-desc py-8 font-medium">
+                Data perangkat desa belum tersedia.
             </div>
             @endforelse
         </div>
 
         <div class="text-center mt-8">
-            <a href="{{ route('pemerintahan.perangkat') }}" class="btn btn-outline" id="btn-all-officials">
-                Lihat Semua Perangkat
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            <a href="{{ route('pemerintahan.perangkat') }}" class="btn btn-outline font-extrabold" id="btn-all-officials">
+                Lihat Semua Perangkat Desa
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
         </div>
     </div>
 </section>
 
 {{-- ============================================================
-     APBKal HIGHLIGHT
+     APBDes HIGHLIGHT (Transparansi Anggaran)
 ============================================================ --}}
 @if($budget)
-<section class="section-py" aria-labelledby="budget-title">
+<section class="section-py bg-grid" aria-labelledby="budget-title">
     <div class="container-sid">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div class="reveal reveal-left">
                 <div class="section-header-label">Transparansi Anggaran</div>
-                <h2 id="budget-title" class="section-title">APBKal {{ $budget->fiscal_year }}</h2>
-                <p class="text-gray-500 mt-2 mb-6">Pengelolaan Anggaran Pendapatan dan Belanja Kalurahan secara transparan dan akuntabel.</p>
+                <h2 id="budget-title" class="section-title text-main-title">APBDes Tahun {{ $budget->fiscal_year }}</h2>
+                <p class="text-muted-desc mt-2 mb-6 font-medium">Pengelolaan Anggaran Pendapatan dan Belanja Desa secara terbuka, transparan, dan akuntabel.</p>
 
                 <div class="grid grid-cols-2 gap-4 mb-6">
-                    <div class="p-4 bg-green-50 rounded-xl border border-green-100">
-                        <div class="text-xs font-semibold text-green-600 uppercase tracking-wide mb-1">Total Pendapatan</div>
-                        <div class="text-xl font-black text-green-700">
+                    <div class="p-5 budget-income-box rounded-2xl shadow-sm">
+                        <div class="text-[11px] font-black budget-label uppercase tracking-wider mb-1">Total Pendapatan</div>
+                        <div class="text-xl sm:text-2xl font-black budget-value">
                             Rp {{ number_format($budget->total_income / 1000000, 0, ',', '.') }}Jt
                         </div>
                     </div>
-                    <div class="p-4 bg-blue-50 rounded-xl border border-blue-100">
-                        <div class="text-xs font-semibold text-blue-600 uppercase tracking-wide mb-1">Total Belanja</div>
-                        <div class="text-xl font-black text-blue-700">
+                    <div class="p-5 budget-expense-box rounded-2xl shadow-sm">
+                        <div class="text-[11px] font-black budget-label uppercase tracking-wider mb-1">Total Belanja</div>
+                        <div class="text-xl sm:text-2xl font-black budget-value">
                             Rp {{ number_format($budget->total_expense / 1000000, 0, ',', '.') }}Jt
                         </div>
                     </div>
                 </div>
 
-                {{-- Realisasi Progress --}}
+                {{-- Realisasi Progress Bar --}}
                 @if($budget->total_income > 0)
-                <div class="mb-4">
-                    <div class="flex justify-between text-xs text-gray-500 mb-1.5">
-                        <span>Realisasi Pendapatan</span>
-                        <span class="font-semibold text-green-600">{{ number_format(($budget->realized_income ?? 0) / $budget->total_income * 100, 1) }}%</span>
+                <div class="mb-6 card-box-light rounded-2xl p-4">
+                    <div class="flex justify-between text-xs font-bold text-main-title mb-2">
+                        <span>Realisasi Pendapatan Desa</span>
+                        <span class="text-emerald-600 dark:text-emerald-400 font-black text-sm">{{ number_format(($budget->realized_income ?? 0) / $budget->total_income * 100, 1) }}%</span>
                     </div>
-                    <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-                        <div class="h-full bg-green-500 rounded-full transition-all duration-1000"
+                    <div class="h-3.5 progress-track rounded-full overflow-hidden p-0.5 border border-slate-200 dark:border-slate-700">
+                        <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-1000 shadow-sm"
                              style="width: {{ min(100, ($budget->realized_income ?? 0) / $budget->total_income * 100) }}%"></div>
                     </div>
                 </div>
                 @endif
 
-                <a href="{{ route('transparansi.apbkal') }}" class="btn btn-primary" id="btn-apbkal">
-                    Detail APBKal
-                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                <a href="{{ route('transparansi.apbkal') }}" class="btn btn-primary font-extrabold shadow-lg shadow-blue-500/20" id="btn-apbkal">
+                    Detail Laporan APBDes
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                 </a>
             </div>
 
-            {{-- Chart Placeholder --}}
+            {{-- Donut Chart Box (Light & Dark Adaptive) --}}
             <div class="reveal reveal-right">
-                <div class="bg-gradient-to-br from-blue-900 to-blue-950 rounded-2xl p-6 text-white">
-                    <h3 class="font-bold mb-4">Komposisi Belanja</h3>
+                <div class="card-box-light rounded-3xl p-6 sm:p-8">
+                    <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
+                        <h3 class="font-extrabold text-base text-main-title">Komposisi Alokasi Belanja</h3>
+                        <span class="text-[11px] font-bold official-badge px-3 py-1 rounded-full">TA {{ $budget->fiscal_year }}</span>
+                    </div>
                     <div id="budget-donut-chart"></div>
-                    <div class="space-y-2 mt-4">
+                    <div class="space-y-3 mt-6">
                         @php
                             $expenseCategories = [
-                                ['name' => 'Penyelenggaraan Pemerintahan', 'pct' => 26, 'color' => '#3B82F6'],
-                                ['name' => 'Pembangunan', 'pct' => 38, 'color' => '#10B981'],
-                                ['name' => 'Pemberdayaan Masyarakat', 'pct' => 21, 'color' => '#F59E0B'],
-                                ['name' => 'Penanggulangan Bencana', 'pct' => 15, 'color' => '#EF4444'],
+                                ['name' => 'Penyelenggaraan Pemerintahan', 'pct' => 26, 'color' => '#2563EB'],
+                                ['name' => 'Pembangunan Fisik & Infrastruktur', 'pct' => 38, 'color' => '#059669'],
+                                ['name' => 'Pemberdayaan Masyarakat', 'pct' => 21, 'color' => '#D97706'],
+                                ['name' => 'Penanggulangan Bencana', 'pct' => 15, 'color' => '#DC2626'],
                             ];
                         @endphp
                         @foreach($expenseCategories as $cat)
-                        <div class="flex items-center gap-3">
-                            <div class="w-3 h-3 rounded-full shrink-0" style="background-color: {{ $cat['color'] }}"></div>
-                            <div class="flex-1 text-xs text-blue-200">{{ $cat['name'] }}</div>
-                            <div class="text-xs font-bold text-white">{{ $cat['pct'] }}%</div>
+                        <div class="flex items-center gap-3 p-2.5 rounded-xl budget-cat-item">
+                            <div class="w-3.5 h-3.5 rounded-full shrink-0 shadow-sm" style="background-color: {{ $cat['color'] }}"></div>
+                            <div class="flex-1 text-xs font-bold text-sub-title line-clamp-1">{{ $cat['name'] }}</div>
+                            <div class="text-xs font-black text-main-title">{{ $cat['pct'] }}%</div>
                         </div>
                         @endforeach
                     </div>
@@ -644,48 +650,49 @@
 @endif
 
 {{-- ============================================================
-     FAQ SECTION
+     FAQ SECTION (Pusat Bantuan Warga)
 ============================================================ --}}
 @if($faqs->isNotEmpty())
-<section class="section-py bg-gradient-to-br from-slate-50 to-blue-50" aria-labelledby="faq-title">
+<section class="section-py" aria-labelledby="faq-title">
     <div class="container-sid">
         <div class="max-w-3xl mx-auto">
             <div class="text-center mb-10">
-                <div class="section-header-label justify-center">Bantuan</div>
-                <h2 id="faq-title" class="section-title">Pertanyaan Umum</h2>
-                <p class="section-subtitle">Jawaban atas pertanyaan yang sering diajukan warga</p>
+                <div class="section-header-label">Pusat Bantuan</div>
+                <h2 id="faq-title" class="section-title text-main-title">Pertanyaan Sering Diajukan (FAQ)</h2>
+                <p class="section-subtitle text-muted-desc">Jawaban resmi atas pertanyaan umum mengenai permohonan surat & layanan mandiri</p>
             </div>
 
-            <div class="space-y-3" x-data="{ open: 0 }">
+            <div class="card-box-light rounded-3xl p-6 sm:p-8 space-y-3.5" x-data="{ open: 0 }">
                 @foreach($faqs as $i => $faq)
-                <div class="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm"
-                     id="faq-{{ $faq->id }}">
+                <div class="faq-item-box rounded-2xl overflow-hidden transition-all" id="faq-{{ $faq->id }}">
                     <button
-                        class="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors"
+                        class="w-full flex items-center justify-between p-4.5 sm:p-5 text-left transition-colors"
                         @click="open = open === {{ $i }} ? -1 : {{ $i }}"
                         :aria-expanded="open === {{ $i }}"
                     >
-                        <span class="font-semibold text-gray-800 pr-4 text-sm">{{ $faq->question }}</span>
-                        <svg
-                            class="w-5 h-5 text-blue-600 shrink-0 transition-transform duration-300"
-                            :class="{ 'rotate-180': open === {{ $i }} }"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
+                        <span class="text-main-title font-extrabold text-sm sm:text-base pr-4 leading-snug">{{ $faq->question }}</span>
+                        <div class="w-8 h-8 rounded-full official-badge flex items-center justify-center shrink-0">
+                            <svg
+                                class="w-4 h-4 text-blue-600 dark:text-blue-400 transition-transform duration-300"
+                                :class="{ 'rotate-180': open === {{ $i }} }"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </div>
                     </button>
                     <div
                         x-show="open === {{ $i }}"
                         x-collapse
-                        class="px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-50 pt-4">
+                        class="px-5 pb-5 text-sub-title text-xs sm:text-sm leading-relaxed faq-answer-box pt-4">
                         {!! $faq->answer !!}
                     </div>
                 </div>
                 @endforeach
             </div>
 
-            <div class="text-center mt-6">
-                <a href="{{ route('kontak') }}" class="btn btn-outline" id="btn-more-help">
-                    Punya Pertanyaan Lain? Hubungi Kami
+            <div class="text-center mt-8">
+                <a href="{{ route('kontak') }}" class="btn btn-outline font-extrabold" id="btn-more-help">
+                    Punya Pertanyaan Lain? Hubungi Layanan Warga
                 </a>
             </div>
         </div>
@@ -694,45 +701,42 @@
 @endif
 
 {{-- ============================================================
-     PORTAL WARGA CTA
+     PORTAL WARGA CTA BANNER (Urus Dokumen 24/7)
 ============================================================ --}}
-<section class="relative py-20 overflow-hidden" aria-labelledby="cta-title">
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900"></div>
+<section class="relative py-16 sm:py-20 overflow-hidden rounded-3xl my-8 bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-950 text-white shadow-2xl" aria-labelledby="cta-title">
     <div class="absolute inset-0 bg-grid opacity-20"></div>
 
-    {{-- Decorative Shapes --}}
-    <div class="absolute -top-20 -right-20 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
-    <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+    {{-- Decorative Blur Shapes --}}
+    <div class="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
 
     <div class="container-sid relative z-10 text-center">
-        <div class="inline-flex items-center gap-2 glass text-white/90 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
-            <svg class="w-3.5 h-3.5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
-            </svg>
-            Layanan 24/7 Online
+        <div class="inline-flex items-center gap-2 bg-white/20 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-6 border border-white/30 backdrop-blur-sm shadow-md">
+            <span class="w-2 h-2 rounded-full bg-green-400 animate-ping"></span>
+            Layanan Portal Mandiri 24/7
         </div>
-        <h2 id="cta-title" class="text-4xl md:text-5xl font-extrabold text-white mb-4">
-            Urus Dokumen dari<br>Mana Saja
+        <h2 id="cta-title" class="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight mb-4 drop-shadow-md">
+            Urus Dokumen & Surat dari Mana Saja
         </h2>
-        <p class="text-blue-200 text-lg max-w-2xl mx-auto mb-8">
-            Ajukan permohonan surat keterangan, lacak status permohonan, dan unduh dokumen digital langsung dari portal warga Condongcatur.
+        <p class="text-blue-100 text-base sm:text-lg max-w-2xl mx-auto mb-8 font-medium">
+            Ajukan permohonan surat keterangan, lacak status proses permohonan, dan unduh dokumen resmi dari portal layanan mandiri warga.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
-            <a href="{{ route('warga.register') }}" class="btn btn-accent text-base px-6 py-3" id="btn-register-warga">
-                Daftar Sekarang — Gratis
+            <a href="{{ route('warga.register') }}" class="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-amber-950 font-black text-sm px-7 py-3.5 rounded-xl shadow-xl hover:scale-105 transition-all flex items-center gap-2" id="btn-register-warga">
+                Daftar Portal Warga — Gratis
                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                 </svg>
             </a>
-            <a href="{{ route('layanan.index') }}" class="btn btn-secondary text-base px-6 py-3" id="btn-learn-layanan">
-                Pelajari Layanan
+            <a href="{{ route('layanan.index') }}" class="bg-white/15 hover:bg-white/25 text-white font-extrabold text-sm px-7 py-3.5 rounded-xl border border-white/30 backdrop-blur-md transition-all" id="btn-learn-layanan">
+                Pelajari Katalog Layanan
             </a>
         </div>
 
         {{-- Feature badges --}}
-        <div class="flex flex-wrap justify-center gap-3 mt-8">
-            @foreach(['Surat Keterangan Online', 'Tracking Status', 'Download PDF', 'Notifikasi WhatsApp', 'Keamanan Data'] as $feat)
-            <span class="glass text-white/80 text-xs px-3 py-1.5 rounded-full">
+        <div class="flex flex-wrap justify-center gap-2.5 mt-8">
+            @foreach(['Surat Online', 'Tracking Realtime', 'Download PDF Berbintang', 'Notifikasi WhatsApp', 'Enkripsi Data'] as $feat)
+            <span class="bg-white/15 text-white font-semibold text-xs px-3.5 py-1.5 rounded-full border border-white/20 backdrop-blur-sm">
                 ✓ {{ $feat }}
             </span>
             @endforeach
