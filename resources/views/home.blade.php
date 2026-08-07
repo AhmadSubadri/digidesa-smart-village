@@ -111,48 +111,42 @@
 </section>
 
 {{-- ============================================================
-     QUICK LINKS SECTION
+     QUICK LINKS SECTION (Modern 8-Card Floating Grid)
 ============================================================ --}}
-<section class="py-10 relative" aria-labelledby="quick-links-title">
-    {{-- Floating Card Effect --}}
+<section class="py-6 relative z-30 -mt-16 sm:-mt-20" aria-labelledby="quick-links-title">
     <div class="container-sid">
-        <div class="bg-white rounded-2xl shadow-xl -mt-12 relative z-10 p-6 md:p-8 border border-gray-100">
-            <h2 id="quick-links-title" class="sr-only">Akses Cepat Layanan</h2>
-            <div class="quick-links-grid stagger-children">
-                @forelse($quickLinks as $link)
-                <a href="{{ $link->url }}"
-                   class="quick-link-card"
-                   id="quick-link-{{ $loop->index }}"
-                   @if(str_starts_with($link->url, 'http')) target="_blank" rel="noopener" @endif>
-                    <div class="quick-link-icon" style="background-color: {{ $link->color ?? '#EFF6FF' }}20;">
-                        {{-- Render Heroicon by name --}}
-                        <x-dynamic-component :component="$link->icon ?? 'heroicon-o-link'" class="w-6 h-6" :style="'color: ' . ($link->color ?? '#2563EB')" />
-                    </div>
-                    <div>
-                        <div class="font-semibold text-sm text-gray-800 mb-0.5">{{ $link->title }}</div>
-                        @if($link->description)
-                        <div class="text-xs text-gray-500 leading-snug line-clamp-2">{{ $link->description }}</div>
-                        @endif
-                    </div>
-                </a>
-                @empty
-                {{-- Fallback Quick Links --}}
+        <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl p-5 sm:p-6 border border-slate-100 dark:border-slate-800 backdrop-blur-xl">
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse"></span>
+                    <h2 id="quick-links-title" class="text-xs font-black uppercase tracking-widest text-slate-500 dark:text-slate-400">Layanan & Akses Cepat Digital</h2>
+                </div>
+                <span class="text-[11px] font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-slate-800 px-3 py-1 rounded-full">8 Akses Prioritas</span>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4">
                 @foreach([
-                    ['title' => 'Surat Keterangan', 'icon' => '📄', 'color' => '#2563EB', 'url' => '/layanan/surat'],
-                    ['title' => 'Data Penduduk', 'icon' => '👥', 'color' => '#7C3AED', 'url' => '/statistik'],
-                    ['title' => 'APBKal', 'icon' => '💰', 'color' => '#16A34A', 'url' => '/transparansi/apbkal'],
-                    ['title' => 'Pengaduan', 'icon' => '📢', 'color' => '#DC2626', 'url' => '/pengaduan'],
-                    ['title' => 'Galeri', 'icon' => '🖼️', 'color' => '#D97706', 'url' => '/galeri'],
-                    ['title' => 'Agenda', 'icon' => '📅', 'color' => '#0891B2', 'url' => '/agenda'],
-                    ['title' => 'PPID', 'icon' => '📁', 'color' => '#65A30D', 'url' => '/ppid'],
-                    ['title' => 'Peta Desa', 'icon' => '🗺️', 'color' => '#E11D48', 'url' => '/peta'],
+                    ['title' => 'Surat Online', 'desc' => 'Layanan Surat', 'icon' => '📄', 'bg' => 'bg-blue-50 dark:bg-blue-950/40 text-blue-600', 'url' => '/layanan/surat'],
+                    ['title' => 'Penduduk', 'desc' => 'Data Statistik', 'icon' => '👥', 'bg' => 'bg-purple-50 dark:bg-purple-950/40 text-purple-600', 'url' => '/statistik'],
+                    ['title' => 'APBDes', 'desc' => 'Transparansi', 'icon' => '💰', 'bg' => 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600', 'url' => '/transparansi/apbkal'],
+                    ['title' => 'Pengaduan', 'desc' => 'Lapor Masalah', 'icon' => '📢', 'bg' => 'bg-rose-50 dark:bg-rose-950/40 text-rose-600', 'url' => '/pengaduan'],
+                    ['title' => 'Galeri Foto', 'desc' => 'Dokumentasi', 'icon' => '🖼️', 'bg' => 'bg-amber-50 dark:bg-amber-950/40 text-amber-600', 'url' => '/galeri'],
+                    ['title' => 'Agenda Desa', 'desc' => 'Jadwal Acara', 'icon' => '📅', 'bg' => 'bg-cyan-50 dark:bg-cyan-950/40 text-cyan-600', 'url' => '/agenda'],
+                    ['title' => 'PPID Berkas', 'desc' => 'Unduh Dokumen', 'icon' => '📁', 'bg' => 'bg-lime-50 dark:bg-lime-950/40 text-lime-600', 'url' => '/ppid'],
+                    ['title' => 'Peta Wilayah', 'desc' => 'Peta Interaktif', 'icon' => '🗺️', 'bg' => 'bg-fuchsia-50 dark:bg-fuchsia-950/40 text-fuchsia-600', 'url' => '/peta'],
                 ] as $item)
-                <a href="{{ $item['url'] }}" class="quick-link-card">
-                    <div class="quick-link-icon text-2xl">{{ $item['icon'] }}</div>
-                    <div class="font-semibold text-sm text-gray-800">{{ $item['title'] }}</div>
+                <a href="{{ $item['url'] }}" class="group flex flex-col items-center text-center p-3 sm:p-4 rounded-2xl bg-slate-50/80 dark:bg-slate-800/60 hover:bg-white dark:hover:bg-slate-800 border border-slate-100 dark:border-slate-700/80 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5">
+                    <div class="w-12 h-12 rounded-2xl {{ $item['bg'] }} flex items-center justify-center text-2xl mb-2.5 shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                        {{ $item['icon'] }}
+                    </div>
+                    <div class="font-extrabold text-xs text-slate-800 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-1">
+                        {{ $item['title'] }}
+                    </div>
+                    <div class="text-[10px] font-medium text-slate-400 mt-0.5 line-clamp-1">
+                        {{ $item['desc'] }}
+                    </div>
                 </a>
                 @endforeach
-                @endforelse
             </div>
         </div>
     </div>

@@ -90,31 +90,35 @@
 >
 
     {{-- ===================================================
-         UNIFIED STICKY HEADER (TOP BAR TICKER + NAVBAR)
+         UNIFIED STICKY HEADER (TICKER + NAVBAR)
     ==================================================== --}}
-    <header class="sticky top-0 z-[1000] shadow-md transition-all">
+    <header class="sticky top-0 z-[1000] shadow-lg transition-all">
 
-        {{-- RUNNING TEXT TICKER TOP BAR (ALWAYS VISIBLE) --}}
-        <div class="ticker-wrap bg-slate-950 text-white border-b border-slate-800 py-1.5 relative overflow-hidden">
-            <span class="ticker-label bg-gradient-to-r from-amber-500 to-amber-600 text-amber-950 font-black text-[11px] uppercase tracking-wider px-3.5 py-1 flex items-center absolute left-0 top-0 bottom-0 z-10 shadow-md">
-                <svg class="w-3.5 h-3.5 mr-1 animate-pulse" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"/></svg>
-                PENGUMUMAN
-            </span>
-            <div class="pl-36 overflow-hidden flex-1">
-                <div class="ticker-track flex items-center gap-8 text-xs font-medium tracking-wide text-slate-200">
+        {{-- RUNNING TEXT TICKER (INSTANTLY VISIBLE, SEAMLESS MARQUEE) --}}
+        <div class="bg-slate-950 text-white border-b border-blue-900/60 py-2 overflow-hidden relative shadow-inner">
+            <div class="container-sid flex items-center">
+                <div class="bg-gradient-to-r from-amber-400 to-amber-500 text-amber-950 font-black text-[11px] uppercase tracking-wider px-3.5 py-1 rounded-lg flex items-center gap-1.5 shrink-0 shadow-md z-10 mr-4">
+                    <span class="animate-pulse">📢</span> PENGUMUMAN
+                </div>
+                <div class="overflow-hidden flex-1 relative">
                     @php
                         $tickerItems = \App\Models\Announcement::ticker()->orderByDesc('updated_at')->limit(8)->get();
                     @endphp
-                    @if($tickerItems->isEmpty())
-                        <span class="ticker-item">Selamat datang di Platform Portal Digital Desa (Smart Village System)</span>
-                        <span class="ticker-item">Melayani dengan Hati, Membangun Bersama Warga</span>
-                        <span class="ticker-item">Layanan Mandiri Warga Digital 24 Jam Nonstop</span>
-                        <span class="ticker-item">Selamat datang di Platform Portal Digital Desa (Smart Village System)</span>
-                    @else
-                        @foreach($tickerItems as $item)
-                            <span class="ticker-item">🔔 {{ $item->title }}</span>
-                        @endforeach
-                    @endif
+                    <div class="animate-marquee whitespace-nowrap inline-block font-semibold text-xs text-blue-100">
+                        @if($tickerItems->isEmpty())
+                            <span class="inline-block mr-12">• Selamat datang di Platform Portal Digital Desa (Smart Village System)</span>
+                            <span class="inline-block mr-12">• Melayani dengan Hati, Membangun Bersama Warga</span>
+                            <span class="inline-block mr-12">• Layanan Mandiri Warga Digital 24 Jam Nonstop</span>
+                            <span class="inline-block mr-12">• Selamat datang di Platform Portal Digital Desa (Smart Village System)</span>
+                        @else
+                            @foreach($tickerItems as $item)
+                                <span class="inline-block mr-12">• {{ $item->title }}</span>
+                            @endforeach
+                            @foreach($tickerItems as $item)
+                                <span class="inline-block mr-12">• {{ $item->title }}</span>
+                            @endforeach
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
@@ -122,14 +126,14 @@
         {{-- MAIN NAVBAR --}}
         <nav
             class="navbar bg-[#1B4F8A] dark:bg-slate-900 text-white transition-all duration-300 border-b border-blue-800/40 dark:border-slate-800"
-            :class="{ 'shadow-xl bg-blue-950/95 backdrop-blur-md': scrolled }"
+            :class="{ 'shadow-2xl bg-blue-950/95 backdrop-blur-md': scrolled }"
             aria-label="Navigasi Utama"
         >
             <div class="container-sid">
-                <div class="flex items-center justify-between py-2.5">
+                <div class="flex items-center justify-between py-3">
 
-                    {{-- Brand Logo & Name --}}
-                    <a href="{{ route('home') }}" class="navbar-brand flex items-center gap-3 group" aria-label="Beranda Desa">
+                    {{-- Brand Logo & Title --}}
+                    <a href="{{ route('home') }}" class="navbar-brand flex items-center gap-3.5 group" aria-label="Beranda Desa">
                         <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-400 to-amber-300 text-amber-950 font-black flex items-center justify-center text-xl shadow-lg group-hover:scale-105 transition-transform shrink-0">
                             🏛️
                         </div>
@@ -143,39 +147,39 @@
                         </div>
                     </a>
 
-                    {{-- Desktop Navigation Links --}}
-                    <div class="hidden lg:flex items-center gap-1">
+                    {{-- Desktop Navigation Links with Modern Sub-menus --}}
+                    <div class="hidden lg:flex items-center gap-1.5">
                         @php
                             $navLinks = [
                                 ['label' => 'Beranda', 'route' => 'home', 'children' => []],
                                 ['label' => 'Profil', 'route' => '#', 'children' => [
-                                    ['label' => 'Visi & Misi', 'route' => 'profil.visi-misi'],
-                                    ['label' => 'Sejarah Desa', 'route' => 'profil.sejarah'],
-                                    ['label' => 'Geografis & Peta', 'route' => 'profil.geografis'],
-                                    ['label' => 'Demografi', 'route' => 'profil.demografi'],
+                                    ['label' => 'Visi & Misi', 'desc' => 'Cita-cita & arah pembangunan', 'route' => 'profil.visi-misi', 'icon' => '🎯'],
+                                    ['label' => 'Sejarah Desa', 'desc' => 'Asal usul & perjalanan desa', 'route' => 'profil.sejarah', 'icon' => '📜'],
+                                    ['label' => 'Geografis & Peta', 'desc' => 'Batas & potensi wilayah', 'route' => 'profil.geografis', 'icon' => '🗺️'],
+                                    ['label' => 'Demografi', 'desc' => 'Statistik kependudukan', 'route' => 'profil.demografi', 'icon' => '📊'],
                                 ]],
                                 ['label' => 'Pemerintahan', 'route' => '#', 'children' => [
-                                    ['label' => 'Struktur Organisasi', 'route' => 'pemerintahan.struktur'],
-                                    ['label' => 'Perangkat Desa', 'route' => 'pemerintahan.perangkat'],
-                                    ['label' => 'Lembaga Desa', 'route' => 'pemerintahan.lembaga'],
+                                    ['label' => 'Struktur Organisasi', 'desc' => 'Bagan SOTK kalurahan', 'route' => 'pemerintahan.struktur', 'icon' => '🏛️'],
+                                    ['label' => 'Perangkat Desa', 'desc' => 'Profil lurah & pamong', 'route' => 'pemerintahan.perangkat', 'icon' => '👔'],
+                                    ['label' => 'Lembaga Desa', 'desc' => 'BPD, LPKAL, PKK, Karang Taruna', 'route' => 'pemerintahan.lembaga', 'icon' => '🤝'],
                                 ]],
                                 ['label' => 'Informasi', 'route' => '#', 'children' => [
-                                    ['label' => 'Berita & Artikel', 'route' => 'berita.index'],
-                                    ['label' => 'Agenda Kegiatan', 'route' => 'agenda.index'],
-                                    ['label' => 'Pengumuman', 'route' => 'pengumuman.index'],
-                                    ['label' => 'Galeri Foto', 'route' => 'galeri.index'],
+                                    ['label' => 'Berita & Artikel', 'desc' => 'Kabar terkini desa', 'route' => 'berita.index', 'icon' => '📰'],
+                                    ['label' => 'Agenda Kegiatan', 'desc' => 'Jadwal acara & kegiatan', 'route' => 'agenda.index', 'icon' => '📅'],
+                                    ['label' => 'Pengumuman', 'desc' => 'Informasi edaran resmi', 'route' => 'pengumuman.index', 'icon' => '📢'],
+                                    ['label' => 'Galeri Foto', 'desc' => 'Dokumentasi kegiatan', 'route' => 'galeri.index', 'icon' => '🖼️'],
                                 ]],
                                 ['label' => 'Data & Peta', 'route' => '#', 'children' => [
-                                    ['label' => 'Kependudukan', 'route' => 'statistik.kependudukan'],
-                                    ['label' => 'IDM Dashboard', 'route' => 'statistik.idm'],
-                                    ['label' => 'SDGs Desa', 'route' => 'statistik.sdgs'],
-                                    ['label' => 'Peta Interaktif', 'route' => 'peta'],
+                                    ['label' => 'Kependudukan', 'desc' => 'Grafik demografi warga', 'route' => 'statistik.kependudukan', 'icon' => '👥'],
+                                    ['label' => 'IDM Dashboard', 'desc' => 'Indeks Desa Membangun', 'route' => 'statistik.idm', 'icon' => '📈'],
+                                    ['label' => 'SDGs Desa', 'desc' => '18 Tujuan Pembangunan', 'route' => 'statistik.sdgs', 'icon' => '🌐'],
+                                    ['label' => 'Peta Interaktif', 'desc' => 'Peta spasial fasiliti desa', 'route' => 'peta', 'icon' => '📍'],
                                 ]],
                                 ['label' => 'Transparansi', 'route' => '#', 'children' => [
-                                    ['label' => 'APBDes', 'route' => 'transparansi.apbkal'],
-                                    ['label' => 'Pembangunan', 'route' => 'transparansi.pembangunan'],
-                                    ['label' => 'Bantuan Sosial', 'route' => 'transparansi.bansos'],
-                                    ['label' => 'PPID Dokumen', 'route' => 'ppid.index'],
+                                    ['label' => 'APBDes 2025', 'desc' => 'Anggaran pendapatan & belanja', 'route' => 'transparansi.apbkal', 'icon' => '💰'],
+                                    ['label' => 'Pembangunan', 'desc' => 'Progres proyek fisik', 'route' => 'transparansi.pembangunan', 'icon' => '🏗️'],
+                                    ['label' => 'Bantuan Sosial', 'desc' => 'Katalog penerima bansos', 'route' => 'transparansi.bansos', 'icon' => '🎁'],
+                                    ['label' => 'PPID Dokumen', 'desc' => 'Unduh berkas informasi publik', 'route' => 'ppid.index', 'icon' => '📁'],
                                 ]],
                             ];
                         @endphp
@@ -183,24 +187,43 @@
                         @foreach($navLinks as $link)
                             @if(empty($link['children']))
                                 <a href="{{ $link['route'] === '#' ? '#' : route($link['route']) }}"
-                                   class="px-3 py-2 text-xs font-bold rounded-lg text-white/90 hover:text-white hover:bg-white/15 transition-all">
+                                   class="px-3.5 py-2 text-xs font-extrabold rounded-xl text-white/90 hover:text-white hover:bg-white/15 transition-all">
                                     {{ $link['label'] }}
                                 </a>
                             @else
-                                <div class="nav-dropdown relative group">
-                                    <button class="px-3 py-2 text-xs font-bold rounded-lg text-white/90 hover:text-white hover:bg-white/15 transition-all flex items-center gap-1">
+                                <div class="nav-dropdown relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                                    <button class="px-3.5 py-2 text-xs font-extrabold rounded-xl text-white/90 hover:text-white hover:bg-white/15 transition-all flex items-center gap-1.5">
                                         {{ $link['label'] }}
-                                        <svg class="w-3.5 h-3.5 opacity-70 group-hover:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                        <svg class="w-3.5 h-3.5 opacity-70 group-hover:rotate-180 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
                                         </svg>
                                     </button>
-                                    <div class="nav-dropdown-menu absolute top-full left-0 mt-1 w-52 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 rounded-xl shadow-2xl border border-slate-100 dark:border-slate-700 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+
+                                    {{-- Sub-menu Dropdown Card --}}
+                                    <div
+                                        x-show="open"
+                                        x-transition:enter="transition ease-out duration-200"
+                                        x-transition:enter-start="opacity-0 translate-y-2 scale-95"
+                                        x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+                                        x-transition:leave="transition ease-in duration-150"
+                                        x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+                                        x-transition:leave-end="opacity-0 translate-y-2 scale-95"
+                                        class="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-100 dark:border-slate-800 p-2 z-50 overflow-hidden"
+                                    >
+                                        <div class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 px-3 py-1 mb-1 border-b border-slate-100 dark:border-slate-800">
+                                            Menu {{ $link['label'] }}
+                                        </div>
                                         @foreach($link['children'] as $child)
-                                            <a href="{{ route($child['route']) }}" class="flex items-center gap-2 px-4 py-2 text-xs font-semibold hover:bg-blue-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                                                <svg class="w-3.5 h-3.5 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                                </svg>
-                                                {{ $child['label'] }}
+                                            <a href="{{ route($child['route']) }}" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-blue-50/80 dark:hover:bg-slate-800 transition-all group/item">
+                                                <span class="text-base shrink-0 group-hover/item:scale-110 transition-transform">{{ $child['icon'] }}</span>
+                                                <div>
+                                                    <div class="text-xs font-bold text-slate-800 dark:text-slate-100 group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400 transition-colors">
+                                                        {{ $child['label'] }}
+                                                    </div>
+                                                    <div class="text-[10px] text-slate-400 leading-tight">
+                                                        {{ $child['desc'] }}
+                                                    </div>
+                                                </div>
                                             </a>
                                         @endforeach
                                     </div>
@@ -228,10 +251,10 @@
 
                         {{-- Portal Warga Accent Button --}}
                         <a href="{{ route('warga.login') }}"
-                           class="hidden sm:inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-amber-950 font-extrabold text-xs px-4 py-2 rounded-xl shadow-md hover:shadow-lg transition-all hover:scale-105"
+                           class="hidden sm:inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-amber-950 font-extrabold text-xs px-4 py-2.5 rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105"
                            id="btn-portal-warga">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                             </svg>
                             Portal Warga
                         </a>
