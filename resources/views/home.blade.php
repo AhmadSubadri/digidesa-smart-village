@@ -111,113 +111,112 @@
 </section>
 
 {{-- ============================================================
-     QUICK LINKS SECTION (Modern 8-Card Floating Grid)
+     QUICK LINKS SECTION (Ultra-Clean High Contrast Floating Grid)
 ============================================================ --}}
-<section class="py-6 relative z-30 -mt-16 sm:-mt-20" aria-labelledby="quick-links-title">
+<section class="py-6 relative z-30 -mt-14 sm:-mt-16" aria-labelledby="quick-links-title">
     <div class="container-sid">
-        <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl p-5 sm:p-6 border border-slate-100 dark:border-slate-800 backdrop-blur-xl">
+        {{-- High Contrast Card Container --}}
+        <div class="card-box-light rounded-3xl p-5 sm:p-6">
             <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2.5">
                     <span class="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse"></span>
-                    <h2 id="quick-links-title" class="text-xs font-black uppercase tracking-widest text-slate-500 dark:text-slate-400">Layanan & Akses Cepat Digital</h2>
+                    <h2 id="quick-links-title" class="text-main-title text-xs font-black uppercase tracking-widest">Layanan & Akses Cepat Digital</h2>
                 </div>
-                <span class="text-[11px] font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-slate-800 px-3 py-1 rounded-full">8 Akses Prioritas</span>
+                <span class="text-[11px] font-bold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-slate-800 px-3 py-1 rounded-full border border-blue-200/80 dark:border-slate-700">8 Layanan Utama</span>
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4">
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-3.5">
                 @foreach([
-                    ['title' => 'Surat Online', 'desc' => 'Layanan Surat', 'icon' => '📄', 'bg' => 'bg-blue-50 dark:bg-blue-950/40 text-blue-600', 'url' => '/layanan/surat'],
-                    ['title' => 'Penduduk', 'desc' => 'Data Statistik', 'icon' => '👥', 'bg' => 'bg-purple-50 dark:bg-purple-950/40 text-purple-600', 'url' => '/statistik'],
-                    ['title' => 'APBDes', 'desc' => 'Transparansi', 'icon' => '💰', 'bg' => 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600', 'url' => '/transparansi/apbkal'],
-                    ['title' => 'Pengaduan', 'desc' => 'Lapor Masalah', 'icon' => '📢', 'bg' => 'bg-rose-50 dark:bg-rose-950/40 text-rose-600', 'url' => '/pengaduan'],
-                    ['title' => 'Galeri Foto', 'desc' => 'Dokumentasi', 'icon' => '🖼️', 'bg' => 'bg-amber-50 dark:bg-amber-950/40 text-amber-600', 'url' => '/galeri'],
-                    ['title' => 'Agenda Desa', 'desc' => 'Jadwal Acara', 'icon' => '📅', 'bg' => 'bg-cyan-50 dark:bg-cyan-950/40 text-cyan-600', 'url' => '/agenda'],
-                    ['title' => 'PPID Berkas', 'desc' => 'Unduh Dokumen', 'icon' => '📁', 'bg' => 'bg-lime-50 dark:bg-lime-950/40 text-lime-600', 'url' => '/ppid'],
-                    ['title' => 'Peta Wilayah', 'desc' => 'Peta Interaktif', 'icon' => '🗺️', 'bg' => 'bg-fuchsia-50 dark:bg-fuchsia-950/40 text-fuchsia-600', 'url' => '/peta'],
+                    ['title' => 'Surat Online', 'desc' => 'Layanan Surat', 'icon' => '📄', 'badge_bg' => 'bg-blue-50 text-blue-600 border border-blue-100 dark:bg-blue-950/60 dark:text-blue-400 dark:border-blue-900', 'url' => '/layanan/surat'],
+                    ['title' => 'Penduduk', 'desc' => 'Data Kependudukan', 'icon' => '👥', 'badge_bg' => 'bg-purple-50 text-purple-600 border border-purple-100 dark:bg-purple-950/60 dark:text-purple-400 dark:border-purple-900', 'url' => '/statistik'],
+                    ['title' => 'APBDes', 'desc' => 'Transparansi', 'icon' => '💰', 'badge_bg' => 'bg-emerald-50 text-emerald-600 border border-emerald-100 dark:bg-emerald-950/60 dark:text-emerald-400 dark:border-emerald-900', 'url' => '/transparansi/apbkal'],
+                    ['title' => 'Pengaduan', 'desc' => 'Lapor Masalah', 'icon' => '📢', 'badge_bg' => 'bg-rose-50 text-rose-600 border border-rose-100 dark:bg-rose-950/60 dark:text-rose-400 dark:border-rose-900', 'url' => '/pengaduan'],
+                    ['title' => 'Galeri Foto', 'desc' => 'Dokumentasi', 'icon' => '🖼️', 'badge_bg' => 'bg-amber-50 text-amber-600 border border-amber-100 dark:bg-amber-950/60 dark:text-amber-400 dark:border-amber-900', 'url' => '/galeri'],
+                    ['title' => 'Agenda Desa', 'desc' => 'Jadwal Acara', 'icon' => '📅', 'badge_bg' => 'bg-cyan-50 text-cyan-600 border border-cyan-100 dark:bg-cyan-950/60 dark:text-cyan-400 dark:border-cyan-900', 'url' => '/agenda'],
+                    ['title' => 'PPID Berkas', 'desc' => 'Unduh Dokumen', 'icon' => '📁', 'badge_bg' => 'bg-lime-50 text-lime-600 border border-lime-100 dark:bg-lime-950/60 dark:text-lime-400 dark:border-lime-900', 'url' => '/ppid'],
+                    ['title' => 'Peta Wilayah', 'desc' => 'Peta Interaktif', 'icon' => '🗺️', 'badge_bg' => 'bg-fuchsia-50 text-fuchsia-600 border border-fuchsia-100 dark:bg-fuchsia-950/60 dark:text-fuchsia-400 dark:border-fuchsia-900', 'url' => '/peta'],
                 ] as $item)
-                <a href="{{ $item['url'] }}" class="group flex flex-col items-center text-center p-3 sm:p-4 rounded-2xl bg-slate-50/80 dark:bg-slate-800/60 hover:bg-white dark:hover:bg-slate-800 border border-slate-100 dark:border-slate-700/80 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5">
-                    <div class="w-12 h-12 rounded-2xl {{ $item['bg'] }} flex items-center justify-center text-2xl mb-2.5 shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                <a href="{{ $item['url'] }}" class="card-inner-light group flex flex-col items-center text-center p-3 sm:p-3.5 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-11 h-11 rounded-2xl {{ $item['badge_bg'] }} flex items-center justify-center text-xl mb-2 shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                         {{ $item['icon'] }}
                     </div>
-                    <div class="font-extrabold text-xs text-slate-800 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-1">
+                    <div class="text-main-title font-extrabold text-[12px] group-hover:text-blue-600 transition-colors line-clamp-1">
                         {{ $item['title'] }}
                     </div>
-                    <div class="text-[10px] font-medium text-slate-400 mt-0.5 line-clamp-1">
+                    <div class="text-muted-desc text-[10px] font-medium mt-0.5 line-clamp-1">
                         {{ $item['desc'] }}
                     </div>
                 </a>
                 @endforeach
             </div>
-        </div>
-    </div>
-</section>
-
-{{-- ============================================================
-     VILLAGE STATS
+        {{-- ============================================================
+     VILLAGE STATS (Data Kalurahan dalam Angka)
 ============================================================ --}}
-<section class="section-py bg-grid" aria-labelledby="stats-title">
-    <div class="container-sid">
-        <div class="section-header">
+<section class="section-py bg-grid relative overflow-hidden" aria-labelledby="stats-title">
+    <div class="container-sid relative z-10">
+        <div class="section-header mb-8">
             <div class="section-header-left">
-                <div class="section-header-label">Data Kalurahan</div>
-                <h2 id="stats-title" class="section-title">Condongcatur dalam Angka</h2>
-                <p class="section-subtitle">Data statistik terkini Kalurahan Condongcatur</p>
+                <div class="section-header-label text-blue-600 dark:text-blue-400 font-extrabold text-xs uppercase tracking-widest">Data Statistik Desa</div>
+                <h2 id="stats-title" class="section-title text-main-title">
+                    {{ \App\Services\SettingService::getValue('village_name', 'Pemerintah Desa') }} dalam Angka
+                </h2>
+                <p class="section-subtitle text-muted-desc">Data indikator & statistik demografi kependudukan terkini</p>
             </div>
-            <a href="{{ route('statistik.kependudukan') }}" class="btn btn-outline hidden sm:flex shrink-0">
-                Lihat Detail
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            <a href="{{ route('statistik.kependudukan') }}" class="btn btn-outline hidden sm:flex shrink-0 font-extrabold">
+                Lihat Detail Statistik
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
         </div>
 
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 stagger-children">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 stagger-children">
             {{-- Penduduk --}}
-            <div class="stat-card reveal" id="stat-penduduk">
-                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-3">
-                    <svg class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div class="card-box-light rounded-3xl p-5 sm:p-6 reveal hover:-translate-y-1.5 transition-all duration-300 text-center" id="stat-penduduk">
+                <div class="w-14 h-14 bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-900 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-sm">
+                    <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
                     </svg>
                 </div>
-                <div class="stat-number" data-count="{{ str_replace('.', '', $stats['population']) ?? 28394 }}">0</div>
-                <div class="text-sm font-semibold text-gray-600 mt-1">Jiwa Penduduk</div>
-                <div class="text-xs text-gray-400 mt-0.5">Data {{ date('Y') }}</div>
+                <div class="stat-number text-main-title font-black text-3xl sm:text-4xl tracking-tight" data-count="{{ str_replace('.', '', $stats['population']) ?? 28394 }}">0</div>
+                <div class="text-main-title font-extrabold text-xs sm:text-sm mt-1.5">Jiwa Penduduk</div>
+                <div class="text-muted-desc text-[11px] font-semibold mt-0.5">Terdaftar Aktif {{ date('Y') }}</div>
             </div>
 
             {{-- KK --}}
-            <div class="stat-card reveal" id="stat-kk" style="animation-delay: 0.1s">
-                <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-3">
-                    <svg class="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div class="card-box-light rounded-3xl p-5 sm:p-6 reveal hover:-translate-y-1.5 transition-all duration-300 text-center" id="stat-kk" style="animation-delay: 0.1s">
+                <div class="w-14 h-14 bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-900 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-sm">
+                    <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                     </svg>
                 </div>
-                <div class="stat-number" data-count="{{ str_replace('.', '', $stats['families']) ?? 9800 }}">0</div>
-                <div class="text-sm font-semibold text-gray-600 mt-1">Kepala Keluarga</div>
-                <div class="text-xs text-gray-400 mt-0.5">Terdaftar aktif</div>
+                <div class="stat-number text-main-title font-black text-3xl sm:text-4xl tracking-tight" data-count="{{ str_replace('.', '', $stats['families']) ?? 9800 }}">0</div>
+                <div class="text-main-title font-extrabold text-xs sm:text-sm mt-1.5">Kepala Keluarga</div>
+                <div class="text-muted-desc text-[11px] font-semibold mt-0.5">Kartu Keluarga (KK)</div>
             </div>
 
             {{-- Padukuhan --}}
-            <div class="stat-card reveal" id="stat-padukuhan" style="animation-delay: 0.2s">
-                <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-3">
-                    <svg class="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div class="card-box-light rounded-3xl p-5 sm:p-6 reveal hover:-translate-y-1.5 transition-all duration-300 text-center" id="stat-padukuhan" style="animation-delay: 0.2s">
+                <div class="w-14 h-14 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-900 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-sm">
+                    <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                     </svg>
                 </div>
-                <div class="stat-number" data-count="{{ $stats['padukuhan'] ?? 18 }}">0</div>
-                <div class="text-sm font-semibold text-gray-600 mt-1">Padukuhan</div>
-                <div class="text-xs text-gray-400 mt-0.5">Wilayah administratif</div>
+                <div class="stat-number text-main-title font-black text-3xl sm:text-4xl tracking-tight" data-count="{{ $stats['padukuhan'] ?? 18 }}">0</div>
+                <div class="text-main-title font-extrabold text-xs sm:text-sm mt-1.5">Wilayah RT / RW</div>
+                <div class="text-muted-desc text-[11px] font-semibold mt-0.5">Wilayah Administratif</div>
             </div>
 
             {{-- IDM --}}
-            <div class="stat-card reveal" id="stat-idm" style="animation-delay: 0.3s">
-                <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mx-auto mb-3">
-                    <svg class="w-6 h-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div class="card-box-light rounded-3xl p-5 sm:p-6 reveal hover:-translate-y-1.5 transition-all duration-300 text-center" id="stat-idm" style="animation-delay: 0.3s">
+                <div class="w-14 h-14 bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-sm">
+                    <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
                     </svg>
                 </div>
-                <div class="stat-number">{{ $idmScore ? number_format($idmScore->total_score, 4) : '0.8756' }}</div>
-                <div class="text-sm font-semibold text-gray-600 mt-1">Skor IDM {{ $idmScore?->year ?? date('Y') }}</div>
-                <div class="mt-1">
-                    <span class="badge badge-success text-xs">
-                        {{ ucfirst($idmScore?->status ?? 'mandiri') }}
+                <div class="stat-number text-main-title font-black text-3xl sm:text-4xl tracking-tight">{{ $idmScore ? number_format($idmScore->total_score, 4) : '0.8756' }}</div>
+                <div class="text-main-title font-extrabold text-xs sm:text-sm mt-1.5">Skor IDM {{ $idmScore?->year ?? date('Y') }}</div>
+                <div class="mt-1.5">
+                    <span class="bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 font-extrabold text-[10px] px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                        Desa {{ ucfirst($idmScore?->status ?? 'Mandiri') }}
                     </span>
                 </div>
             </div>
@@ -226,85 +225,87 @@
 </section>
 
 {{-- ============================================================
-     FEATURED NEWS SECTION
+     FEATURED NEWS SECTION (Informasi Terkini)
 ============================================================ --}}
 <section class="section-py" aria-labelledby="news-title">
     <div class="container-sid">
-        <div class="section-header">
+        <div class="section-header mb-8">
             <div class="section-header-left">
-                <div class="section-header-label">Informasi Terkini</div>
-                <h2 id="news-title" class="section-title">Berita & Artikel</h2>
-                <p class="section-subtitle">Informasi terbaru seputar kegiatan dan pembangunan kalurahan</p>
+                <div class="section-header-label text-blue-600 dark:text-blue-400 font-extrabold text-xs uppercase tracking-widest">Informasi Terkini</div>
+                <h2 id="news-title" class="section-title text-main-title">Berita & Publikasi Desa</h2>
+                <p class="section-subtitle text-muted-desc">Kabar terbaru, artikel pembangunan, dan informasi resmi pemerintahan desa</p>
             </div>
-            <a href="{{ route('berita.index') }}" class="btn btn-outline hidden sm:flex shrink-0">
-                Semua Berita
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            <a href="{{ route('berita.index') }}" class="btn btn-outline hidden sm:flex shrink-0 font-extrabold">
+                Lihat Semua Berita
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
         </div>
 
         @if($featuredArticles->isNotEmpty())
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-            {{-- Featured Hero Article --}}
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            {{-- Featured Hero Article Card --}}
             @php $hero = $featuredArticles->first(); @endphp
             <div class="lg:row-span-2 reveal reveal-left">
-                <a href="{{ route('berita.show', $hero->slug) }}" class="news-card group h-full" id="featured-article-{{ $hero->id }}">
-                    <div class="relative" style="padding-top: 60%;">
-                        <img
-                            src="{{ $hero->featured_image ? Storage::url($hero->featured_image) : 'https://picsum.photos/800/500?random=1' }}"
-                            alt="{{ $hero->title }}"
-                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            loading="lazy"
-                        >
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-5">
-                            @if($hero->category)
-                            <span class="badge mb-2" style="background-color: {{ $hero->category->color ?? '#2563EB' }}25; color: {{ $hero->category->color ?? '#2563EB' }}">
-                                {{ $hero->category->name }}
-                            </span>
-                            @endif
-                            <h3 class="text-white font-bold text-xl leading-tight mb-2">{{ $hero->title }}</h3>
-                            <div class="flex items-center gap-3 text-white/70 text-xs">
-                                <span>{{ $hero->published_at?->diffForHumans() }}</span>
-                                <span>•</span>
-                                <span>{{ $hero->reading_time }} menit baca</span>
-                                <span>•</span>
-                                <span>{{ number_format($hero->view_count) }} dilihat</span>
-                            </div>
-                        </div>
-                        @if($hero->is_featured)
-                        <div class="absolute top-4 left-4 glass text-white text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
-                            <svg class="w-3 h-3 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            Pilihan Redaksi
-                        </div>
+                <a href="{{ route('berita.show', $hero->slug) }}" class="group block relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 dark:border-slate-800 h-full min-h-[380px]" id="featured-article-{{ $hero->id }}">
+                    <img
+                        src="{{ $hero->featured_image ? Storage::url($hero->featured_image) : 'https://picsum.photos/800/500?random=1' }}"
+                        alt="{{ $hero->title }}"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        loading="lazy"
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                        @if($hero->category)
+                        <span class="inline-block bg-blue-600 text-white font-extrabold text-[10px] uppercase tracking-wider px-3 py-1 rounded-full mb-3 shadow-md">
+                            {{ $hero->category->name }}
+                        </span>
                         @endif
+                        <h3 class="text-white font-black text-xl sm:text-2xl leading-snug mb-3 group-hover:text-amber-300 transition-colors drop-shadow-md">
+                            {{ $hero->title }}
+                        </h3>
+                        <div class="flex items-center gap-3 text-slate-300 text-xs font-medium">
+                            <span>📅 {{ $hero->published_at?->diffForHumans() }}</span>
+                            <span>•</span>
+                            <span>⏱️ {{ $hero->reading_time }} mnt baca</span>
+                            <span>•</span>
+                            <span>👁️ {{ number_format($hero->view_count) }}x</span>
+                        </div>
                     </div>
+                    @if($hero->is_featured)
+                    <div class="absolute top-4 left-4 bg-amber-400 text-amber-950 font-black text-xs px-3 py-1.5 rounded-full flex items-center gap-1 shadow-lg">
+                        ⭐ Pilihan Redaksi
+                    </div>
+                    @endif
                 </a>
             </div>
 
-            {{-- 2 Secondary Articles --}}
+            {{-- 2 Secondary Articles Cards --}}
             <div class="space-y-4">
                 @foreach($featuredArticles->skip(1)->take(2) as $article)
-                <a href="{{ route('berita.show', $article->slug) }}" class="news-card flex-row group" id="article-{{ $article->id }}" style="flex-direction: row; padding: 0;">
-                    <div class="w-36 shrink-0 h-full">
+                <a href="{{ route('berita.show', $article->slug) }}" class="card-box-light rounded-2xl p-4 flex gap-4 group hover:-translate-y-1 transition-all duration-300" id="article-{{ $article->id }}">
+                    <div class="w-32 sm:w-40 shrink-0 h-28 rounded-xl overflow-hidden relative">
                         <img
                             src="{{ $article->featured_image ? Storage::url($article->featured_image) : 'https://picsum.photos/300/200?random=' . $loop->index }}"
                             alt="{{ $article->title }}"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            style="aspect-ratio: 4/3;"
                             loading="lazy"
                         >
                     </div>
-                    <div class="news-card-body">
-                        @if($article->category)
-                        <span class="news-card-category" style="background-color: {{ $article->category->color ?? '#2563EB' }}20; color: {{ $article->category->color ?? '#2563EB' }}">
-                            {{ $article->category->name }}
-                        </span>
-                        @endif
-                        <h3 class="news-card-title">{{ $article->title }}</h3>
-                        <div class="flex items-center gap-2 text-gray-400 text-xs mt-auto pt-2">
-                            <span>{{ $article->published_at?->diffForHumans() }}</span>
+                    <div class="flex flex-col justify-between flex-1 min-w-0">
+                        <div>
+                            @if($article->category)
+                            <span class="inline-block bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-blue-300 font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-md border border-blue-100 dark:border-slate-700 mb-1.5">
+                                {{ $article->category->name }}
+                            </span>
+                            @endif
+                            <h3 class="text-main-title font-bold text-sm sm:text-base leading-snug group-hover:text-blue-600 transition-colors line-clamp-2">
+                                {{ $article->title }}
+                            </h3>
+                        </div>
+                        <div class="flex items-center gap-2 text-muted-desc text-[11px] font-medium pt-2 border-t border-slate-100 dark:border-slate-800/80">
+                            <span>📅 {{ $article->published_at?->diffForHumans() }}</span>
                             <span>•</span>
-                            <span>{{ $article->reading_time }} mnt</span>
+                            <span>⏱️ {{ $article->reading_time }} mnt</span>
                         </div>
                     </div>
                 </a>
@@ -313,32 +314,33 @@
         </div>
         @endif
 
-        {{-- Latest Articles Grid --}}
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 stagger-children">
+        {{-- Latest Articles Grid (3 Cards) --}}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
             @foreach($latestArticles->take(6) as $article)
-            <a href="{{ route('berita.show', $article->slug) }}" class="news-card group" id="latest-article-{{ $article->id }}">
-                <div class="news-card-img-wrap">
+            <a href="{{ route('berita.show', $article->slug) }}" class="card-box-light rounded-2xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 flex flex-col h-full" id="latest-article-{{ $article->id }}">
+                <div class="aspect-video overflow-hidden relative">
                     <img
                         src="{{ $article->featured_image ? Storage::url($article->featured_image) : 'https://picsum.photos/600/400?random=' . $loop->index + 10 }}"
                         alt="{{ $article->title }}"
-                        class="news-card-img"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
                     >
                 </div>
-                <div class="news-card-body">
+                <div class="p-5 flex flex-col flex-1">
                     @if($article->category)
-                    <span class="news-card-category" style="background-color: {{ $article->category->color ?? '#2563EB' }}20; color: {{ $article->category->color ?? '#2563EB' }}">
+                    <span class="inline-block bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-blue-300 font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md border border-blue-100 dark:border-slate-700 mb-2 w-fit">
                         {{ $article->category->name }}
                     </span>
                     @endif
-                    <h3 class="news-card-title">{{ $article->title }}</h3>
-                    <p class="news-card-excerpt">{{ $article->excerpt }}</p>
-                    <div class="news-card-meta">
-                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                        <span>{{ $article->published_at?->format('d M Y') }}</span>
-                        <span class="ml-auto">{{ $article->reading_time }} mnt baca</span>
+                    <h3 class="text-main-title font-bold text-base leading-snug mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
+                        {{ $article->title }}
+                    </h3>
+                    <p class="text-muted-desc text-xs line-clamp-2 mb-4 flex-1">
+                        {{ $article->excerpt }}
+                    </p>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] text-muted-desc font-medium">
+                        <span>📅 {{ $article->published_at?->format('d M Y') }}</span>
+                        <span>⏱️ {{ $article->reading_time }} mnt baca</span>
                     </div>
                 </div>
             </a>
@@ -346,8 +348,8 @@
         </div>
 
         <div class="text-center mt-8 sm:hidden">
-            <a href="{{ route('berita.index') }}" class="btn btn-outline">
-                Semua Berita
+            <a href="{{ route('berita.index') }}" class="btn btn-outline w-full font-bold">
+                Lihat Semua Berita
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
         </div>
