@@ -9,6 +9,11 @@ class SettingService
 {
     protected int $cacheTtl = 3600; // 1 hour
 
+    public static function getValue(string $key, mixed $default = null): mixed
+    {
+        return (new static())->get($key, $default);
+    }
+
     public function get(string $key, mixed $default = null): mixed
     {
         return Cache::remember("setting.{$key}", $this->cacheTtl, function () use ($key, $default) {

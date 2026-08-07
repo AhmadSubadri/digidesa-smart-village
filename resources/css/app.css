@@ -882,18 +882,40 @@ h1, h2, h3, h4, h5, h6 {
 
 [data-theme="dark"] .news-card,
 [data-theme="dark"] .quick-link-card,
-[data-theme="dark"] .stat-card {
-    background: var(--color-dark-surface);
-    border-color: var(--color-dark-border);
+[data-theme="dark"] .stat-card,
+[data-theme="dark"] .bg-white {
+    background-color: var(--color-dark-surface) !important;
+    border-color: var(--color-dark-border) !important;
+    color: #F1F5F9 !important;
 }
 
 [data-theme="dark"] h1, [data-theme="dark"] h2,
-[data-theme="dark"] h3, [data-theme="dark"] .news-card-title {
-    color: #F1F5F9;
+[data-theme="dark"] h3, [data-theme="dark"] h4,
+[data-theme="dark"] h5, [data-theme="dark"] h6,
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .news-card-title {
+    color: #F8FAFC !important;
+}
+
+[data-theme="dark"] .text-gray-900,
+[data-theme="dark"] .text-gray-800,
+[data-theme="dark"] .text-gray-700 {
+    color: #F1F5F9 !important;
+}
+
+[data-theme="dark"] .text-gray-600,
+[data-theme="dark"] .text-gray-500 {
+    color: #94A3B8 !important;
+}
+
+[data-theme="dark"] .bg-slate-50,
+[data-theme="dark"] .bg-gray-50 {
+    background-color: #0F172A !important;
 }
 
 [data-theme="dark"] .navbar.scrolled {
     background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid #334155;
 }
 
 /* ============================================================
