@@ -74,7 +74,7 @@
         init() {
             this.applyTheme();
             window.addEventListener('scroll', () => {
-                this.scrolled = window.scrollY > 40;
+                this.scrolled = window.scrollY > 30;
             });
         },
         toggleDark() {
@@ -86,22 +86,22 @@
             localStorage.setItem('theme', this.darkMode ? 'dark' : 'light');
         }
     }"
-    class="min-h-screen pt-[104px]"
+    class="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased"
 >
 
     {{-- ===================================================
-         HEADER FIXING (TOP BAR + NAVBAR)
+         UNIFIED STICKY HEADER (TOP BAR TICKER + NAVBAR)
     ==================================================== --}}
-    <header class="fixed top-0 left-0 right-0 z-[1000] transition-all duration-300">
+    <header class="sticky top-0 z-[1000] shadow-md transition-all">
 
-        {{-- RUNNING TEXT TICKER TOP BAR --}}
-        <div class="ticker-wrap transition-all duration-300" x-show="!scrolled">
-            <span class="ticker-label pl-4">
-                <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"/></svg>
+        {{-- RUNNING TEXT TICKER TOP BAR (ALWAYS VISIBLE) --}}
+        <div class="ticker-wrap bg-slate-950 text-white border-b border-slate-800 py-1.5 relative overflow-hidden">
+            <span class="ticker-label bg-gradient-to-r from-amber-500 to-amber-600 text-amber-950 font-black text-[11px] uppercase tracking-wider px-3.5 py-1 flex items-center absolute left-0 top-0 bottom-0 z-10 shadow-md">
+                <svg class="w-3.5 h-3.5 mr-1 animate-pulse" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"/></svg>
                 PENGUMUMAN
             </span>
             <div class="pl-36 overflow-hidden flex-1">
-                <div class="ticker-track" id="ticker-track">
+                <div class="ticker-track flex items-center gap-8 text-xs font-medium tracking-wide text-slate-200">
                     @php
                         $tickerItems = \App\Models\Announcement::ticker()->orderByDesc('updated_at')->limit(8)->get();
                     @endphp
@@ -112,7 +112,7 @@
                         <span class="ticker-item">Selamat datang di Platform Portal Digital Desa (Smart Village System)</span>
                     @else
                         @foreach($tickerItems as $item)
-                            <span class="ticker-item">{{ $item->title }}</span>
+                            <span class="ticker-item">🔔 {{ $item->title }}</span>
                         @endforeach
                     @endif
                 </div>
@@ -121,23 +121,23 @@
 
         {{-- MAIN NAVBAR --}}
         <nav
-            class="navbar bg-blue-900/90 backdrop-blur-md transition-all duration-300"
-            :class="{ 'scrolled shadow-lg': scrolled }"
+            class="navbar bg-[#1B4F8A] dark:bg-slate-900 text-white transition-all duration-300 border-b border-blue-800/40 dark:border-slate-800"
+            :class="{ 'shadow-xl bg-blue-950/95 backdrop-blur-md': scrolled }"
             aria-label="Navigasi Utama"
         >
             <div class="container-sid">
                 <div class="flex items-center justify-between py-2.5">
 
-                    {{-- Brand --}}
-                    <a href="{{ route('home') }}" class="navbar-brand flex items-center gap-3" aria-label="Beranda Desa">
-                        <div class="w-10 h-10 rounded-xl bg-amber-400 text-amber-950 font-black flex items-center justify-center text-lg shadow-md shrink-0">
+                    {{-- Brand Logo & Name --}}
+                    <a href="{{ route('home') }}" class="navbar-brand flex items-center gap-3 group" aria-label="Beranda Desa">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-400 to-amber-300 text-amber-950 font-black flex items-center justify-center text-xl shadow-lg group-hover:scale-105 transition-transform shrink-0">
                             🏛️
                         </div>
                         <div>
-                            <div class="navbar-name font-extrabold text-sm sm:text-base leading-tight" :class="scrolled && !darkMode ? 'text-blue-900' : 'text-white'">
+                            <div class="navbar-name font-extrabold text-sm sm:text-base leading-tight text-white tracking-wide">
                                 {{ \App\Services\SettingService::getValue('village_name', 'Pemerintah Desa') }}
                             </div>
-                            <div class="navbar-tagline text-[10px] sm:text-xs" :class="scrolled && !darkMode ? 'text-gray-500' : 'text-blue-200'">
+                            <div class="navbar-tagline text-[10px] sm:text-xs text-blue-200 font-medium">
                                 {{ \App\Services\SettingService::getValue('village_subdistrict', 'Kecamatan') }}, {{ \App\Services\SettingService::getValue('village_district', 'Kabupaten') }}
                             </div>
                         </div>
@@ -183,23 +183,21 @@
                         @foreach($navLinks as $link)
                             @if(empty($link['children']))
                                 <a href="{{ $link['route'] === '#' ? '#' : route($link['route']) }}"
-                                   class="px-3 py-2 text-xs font-bold rounded-xl transition-all"
-                                   :class="scrolled && !darkMode ? 'text-gray-700 hover:text-blue-700 hover:bg-blue-50' : 'text-white/90 hover:text-white hover:bg-white/10'">
+                                   class="px-3 py-2 text-xs font-bold rounded-lg text-white/90 hover:text-white hover:bg-white/15 transition-all">
                                     {{ $link['label'] }}
                                 </a>
                             @else
-                                <div class="nav-dropdown">
-                                    <button class="px-3 py-2 text-xs font-bold rounded-xl transition-all flex items-center gap-1"
-                                            :class="scrolled && !darkMode ? 'text-gray-700 hover:text-blue-700 hover:bg-blue-50' : 'text-white/90 hover:text-white hover:bg-white/10'">
+                                <div class="nav-dropdown relative group">
+                                    <button class="px-3 py-2 text-xs font-bold rounded-lg text-white/90 hover:text-white hover:bg-white/15 transition-all flex items-center gap-1">
                                         {{ $link['label'] }}
-                                        <svg class="w-3.5 h-3.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg class="w-3.5 h-3.5 opacity-70 group-hover:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                         </svg>
                                     </button>
-                                    <div class="nav-dropdown-menu">
+                                    <div class="nav-dropdown-menu absolute top-full left-0 mt-1 w-52 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 rounded-xl shadow-2xl border border-slate-100 dark:border-slate-700 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                                         @foreach($link['children'] as $child)
-                                            <a href="{{ route($child['route']) }}" class="nav-dropdown-item">
-                                                <svg class="w-4 h-4 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <a href="{{ route($child['route']) }}" class="flex items-center gap-2 px-4 py-2 text-xs font-semibold hover:bg-blue-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                                <svg class="w-3.5 h-3.5 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                                                 </svg>
                                                 {{ $child['label'] }}
@@ -212,13 +210,13 @@
                     </div>
 
                     {{-- Right Action Buttons --}}
-                    <div class="flex items-center gap-2">
-                        {{-- Dark Mode Toggle --}}
+                    <div class="flex items-center gap-2.5">
+                        {{-- Dark Mode Toggle Button --}}
                         <button
                             @click="toggleDark()"
-                            class="w-9 h-9 rounded-full flex items-center justify-center transition-all"
-                            :class="scrolled && !darkMode ? 'text-gray-600 hover:bg-gray-100' : 'text-white/80 hover:bg-white/10 hover:text-white'"
+                            class="w-9 h-9 rounded-xl flex items-center justify-center bg-white/10 hover:bg-white/20 text-white transition-all shadow-inner"
                             aria-label="Toggle dark mode"
+                            title="Mode Gelap / Terang"
                         >
                             <svg x-show="!darkMode" class="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
@@ -228,9 +226,9 @@
                             </svg>
                         </button>
 
-                        {{-- Portal Warga Button --}}
+                        {{-- Portal Warga Accent Button --}}
                         <a href="{{ route('warga.login') }}"
-                           class="hidden sm:flex btn btn-accent text-xs px-4 py-2"
+                           class="hidden sm:inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-amber-950 font-extrabold text-xs px-4 py-2 rounded-xl shadow-md hover:shadow-lg transition-all hover:scale-105"
                            id="btn-portal-warga">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
@@ -241,8 +239,7 @@
                         {{-- Mobile Menu Toggle Button --}}
                         <button
                             @click="mobileMenuOpen = !mobileMenuOpen"
-                            class="lg:hidden w-9 h-9 rounded-full flex items-center justify-center transition-all"
-                            :class="scrolled && !darkMode ? 'text-gray-700 hover:bg-gray-100' : 'text-white hover:bg-white/10'"
+                            class="lg:hidden w-9 h-9 rounded-xl flex items-center justify-center bg-white/10 hover:bg-white/20 text-white transition-all"
                             aria-label="Buka menu"
                         >
                             <svg x-show="!mobileMenuOpen" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -260,26 +257,26 @@
             <div
                 x-show="mobileMenuOpen"
                 x-transition
-                class="lg:hidden bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-slate-800 shadow-xl"
+                class="lg:hidden bg-slate-900 border-t border-slate-800 shadow-2xl"
             >
                 <div class="container-sid py-4 space-y-1">
-                    <a href="{{ route('home') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-slate-800 font-semibold text-sm">
+                    <a href="{{ route('home') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-200 hover:bg-slate-800 font-semibold text-sm">
                         Beranda
                     </a>
-                    <a href="{{ route('berita.index') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-slate-800 font-semibold text-sm">
+                    <a href="{{ route('berita.index') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-200 hover:bg-slate-800 font-semibold text-sm">
                         Berita & Artikel
                     </a>
-                    <a href="{{ route('agenda.index') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-slate-800 font-semibold text-sm">
+                    <a href="{{ route('agenda.index') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-200 hover:bg-slate-800 font-semibold text-sm">
                         Agenda Kegiatan
                     </a>
-                    <a href="{{ route('layanan.index') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-slate-800 font-semibold text-sm">
+                    <a href="{{ route('layanan.index') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-200 hover:bg-slate-800 font-semibold text-sm">
                         Layanan Mandiri
                     </a>
-                    <a href="{{ route('kontak') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-slate-800 font-semibold text-sm">
+                    <a href="{{ route('kontak') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-200 hover:bg-slate-800 font-semibold text-sm">
                         Kontak Kami
                     </a>
-                    <div class="pt-2 border-t border-gray-100 dark:border-slate-800 mt-2">
-                        <a href="{{ route('warga.login') }}" class="flex items-center justify-center gap-2 w-full btn btn-primary py-2.5 text-xs">
+                    <div class="pt-2 border-t border-slate-800 mt-2">
+                        <a href="{{ route('warga.login') }}" class="flex items-center justify-center gap-2 w-full bg-amber-400 text-amber-950 font-bold py-2.5 rounded-xl text-xs">
                             Masuk Portal Warga
                         </a>
                     </div>
@@ -337,14 +334,14 @@
     {{-- ===================================================
          FOOTER
     ==================================================== --}}
-    <footer class="footer" aria-label="Footer">
+    <footer class="footer bg-slate-950 text-slate-300 pt-14 pb-8 border-t border-slate-800" aria-label="Footer">
         <div class="container-sid">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-10">
 
                 {{-- Col 1: Brand --}}
                 <div class="footer-logo-area lg:col-span-1">
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-xl bg-amber-400 text-amber-950 font-black flex items-center justify-center text-lg shadow-md shrink-0">
+                        <div class="w-10 h-10 rounded-xl bg-amber-400 text-amber-950 font-black flex items-center justify-center text-xl shadow-md shrink-0">
                             🏛️
                         </div>
                         <div>
@@ -359,48 +356,48 @@
 
                 {{-- Col 2: Navigasi --}}
                 <div>
-                    <h4 class="footer-heading">Navigasi</h4>
-                    <nav>
-                        <a href="{{ route('home') }}" class="footer-link">Beranda</a>
-                        <a href="{{ route('profil.visi-misi') }}" class="footer-link">Profil Desa</a>
-                        <a href="{{ route('berita.index') }}" class="footer-link">Berita & Artikel</a>
-                        <a href="{{ route('agenda.index') }}" class="footer-link">Agenda Kegiatan</a>
-                        <a href="{{ route('galeri.index') }}" class="footer-link">Galeri Foto</a>
-                        <a href="{{ route('pengumuman.index') }}" class="footer-link">Pengumuman</a>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-2 border-amber-400 pl-2.5">Navigasi</h4>
+                    <nav class="flex flex-col space-y-2.5 text-sm">
+                        <a href="{{ route('home') }}" class="hover:text-amber-400 transition-colors">Beranda</a>
+                        <a href="{{ route('profil.visi-misi') }}" class="hover:text-amber-400 transition-colors">Profil Desa</a>
+                        <a href="{{ route('berita.index') }}" class="hover:text-amber-400 transition-colors">Berita & Artikel</a>
+                        <a href="{{ route('agenda.index') }}" class="hover:text-amber-400 transition-colors">Agenda Kegiatan</a>
+                        <a href="{{ route('galeri.index') }}" class="hover:text-amber-400 transition-colors">Galeri Foto</a>
+                        <a href="{{ route('pengumuman.index') }}" class="hover:text-amber-400 transition-colors">Pengumuman</a>
                     </nav>
                 </div>
 
                 {{-- Col 3: Layanan --}}
                 <div>
-                    <h4 class="footer-heading">Layanan</h4>
-                    <nav>
-                        <a href="{{ route('layanan.surat') }}" class="footer-link">Permohonan Surat</a>
-                        <a href="{{ route('transparansi.apbkal') }}" class="footer-link">APBDes</a>
-                        <a href="{{ route('statistik.kependudukan') }}" class="footer-link">Statistik Desa</a>
-                        <a href="{{ route('ppid.index') }}" class="footer-link">PPID Dokumen</a>
-                        <a href="{{ route('pengaduan.index') }}" class="footer-link">Pengaduan</a>
-                        <a href="{{ route('buku-tamu.index') }}" class="footer-link">Buku Tamu</a>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-2 border-amber-400 pl-2.5">Layanan</h4>
+                    <nav class="flex flex-col space-y-2.5 text-sm">
+                        <a href="{{ route('layanan.surat') }}" class="hover:text-amber-400 transition-colors">Permohonan Surat</a>
+                        <a href="{{ route('transparansi.apbkal') }}" class="hover:text-amber-400 transition-colors">APBDes</a>
+                        <a href="{{ route('statistik.kependudukan') }}" class="hover:text-amber-400 transition-colors">Statistik Desa</a>
+                        <a href="{{ route('ppid.index') }}" class="hover:text-amber-400 transition-colors">PPID Dokumen</a>
+                        <a href="{{ route('pengaduan.index') }}" class="hover:text-amber-400 transition-colors">Pengaduan</a>
+                        <a href="{{ route('buku-tamu.index') }}" class="hover:text-amber-400 transition-colors">Buku Tamu</a>
                     </nav>
                 </div>
 
                 {{-- Col 4: Kontak --}}
                 <div>
-                    <h4 class="footer-heading">Kontak Kami</h4>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-2 border-amber-400 pl-2.5">Kontak Kami</h4>
                     <div class="space-y-3">
                         <div class="flex gap-3 text-sm text-slate-400">
-                            <svg class="w-4 h-4 mt-0.5 text-blue-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="w-4 h-4 mt-0.5 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                             </svg>
                             <span>{{ \App\Services\SettingService::getValue('office_address', 'Jl. Utama Desa No. 1') }}</span>
                         </div>
                         <div class="flex gap-3 text-sm text-slate-400">
-                            <svg class="w-4 h-4 mt-0.5 text-blue-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="w-4 h-4 mt-0.5 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                             </svg>
                             <span>{{ \App\Services\SettingService::getValue('office_phone', '(0274) 881094') }}</span>
                         </div>
                         <div class="flex gap-3 text-sm text-slate-400">
-                            <svg class="w-4 h-4 mt-0.5 text-blue-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="w-4 h-4 mt-0.5 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
                             <span>{{ \App\Services\SettingService::getValue('office_email', 'info@digidesa.id') }}</span>
@@ -410,8 +407,8 @@
             </div>
 
             {{-- Footer Bottom --}}
-            <div class="footer-bottom">
-                <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-500">
+            <div class="border-t border-slate-800 pt-6">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
                     <p>&copy; {{ date('Y') }} DigiDesa Smart Village System. Hak Cipta Dilindungi.</p>
                     <div class="flex items-center gap-4">
                         <a href="#" class="hover:text-white transition-colors">Kebijakan Privasi</a>
@@ -430,11 +427,11 @@
         x-show="scrolled"
         x-transition
         @click="window.scrollTo({top: 0, behavior: 'smooth'})"
-        class="fixed bottom-6 right-6 w-10 h-10 bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-blue-700 transition-all z-50"
+        class="fixed bottom-6 right-6 w-11 h-11 bg-blue-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:bg-blue-700 transition-all z-50 hover:scale-110"
         aria-label="Kembali ke atas"
     >
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
         </svg>
     </button>
 

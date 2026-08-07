@@ -69,14 +69,14 @@
                             <div class="max-w-2xl">
                                 <span class="inline-flex items-center gap-2 glass text-white/90 text-xs font-semibold px-3 py-1.5 rounded-full mb-4">
                                     <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-ping"></span>
-                                    Kalurahan Condongcatur
+                                    {{ \App\Services\SettingService::getValue('village_name', 'Pemerintah Desa') }}
                                 </span>
                                 <h1 class="text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4">
-                                    Selamat Datang di<br>
-                                    <span style="color: #F39C12;">Condongcatur</span>
+                                    Selamat Datang di Portal Digital<br>
+                                    <span style="color: #F39C12;">{{ \App\Services\SettingService::getValue('village_name', 'Smart Village') }}</span>
                                 </h1>
                                 <p class="text-xl text-white/80 leading-relaxed mb-8">
-                                    Melayani dengan hati, membangun bersama warga untuk Condongcatur yang lebih maju dan sejahtera.
+                                    Melayani dengan hati, membangun bersama warga untuk desa yang lebih maju, transparan, dan sejahtera.
                                 </p>
                                 <div class="flex gap-3">
                                     <a href="{{ route('layanan.index') }}" class="btn btn-primary" id="hero-cta-layanan">

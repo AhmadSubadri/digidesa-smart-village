@@ -105,14 +105,14 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-primary);
     font-weight: 700;
     line-height: 1.2;
-    color: #0F172A;
+    color: inherit;
 }
 
 .section-title {
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
     font-weight: 800;
-    color: #0F172A;
     line-height: 1.2;
+    color: inherit;
 }
 
 .section-subtitle {
@@ -318,28 +318,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .ticker-track {
-    display: flex;
-    animation: ticker-scroll 40s linear infinite;
+    display: inline-flex;
     white-space: nowrap;
+    animation: ticker-scroll 30s linear infinite;
 }
 
 .ticker-item {
     display: inline-flex;
     align-items: center;
-    padding-right: 4rem;
+    padding-right: 3rem;
     font-size: 0.8rem;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .ticker-item::before {
     content: '•';
-    margin-right: 1rem;
-    color: var(--color-accent);
+    margin-right: 0.75rem;
+    color: #F59E0B;
 }
 
 @keyframes ticker-scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
 }
 
 /* ============================================================
