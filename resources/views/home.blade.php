@@ -701,17 +701,17 @@
 @endif
 
 {{-- ============================================================
-     PORTAL WARGA CTA BANNER (Urus Dokumen 24/7)
+     PORTAL WARGA CTA BANNER (Urus Dokumen & Surat 24/7)
 ============================================================ --}}
-<section class="relative py-16 sm:py-20 overflow-hidden rounded-3xl my-8 bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-950 text-white shadow-2xl" aria-labelledby="cta-title">
+<section class="relative py-16 sm:py-20 overflow-hidden portal-cta-banner my-8 text-white" aria-labelledby="cta-title">
     <div class="absolute inset-0 bg-grid opacity-20"></div>
 
     {{-- Decorative Blur Shapes --}}
-    <div class="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-    <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+    <div class="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="container-sid relative z-10 text-center">
-        <div class="inline-flex items-center gap-2 bg-white/20 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-6 border border-white/30 backdrop-blur-sm shadow-md">
+        <div class="inline-flex items-center gap-2 portal-cta-pill text-white text-xs font-bold px-4 py-1.5 rounded-full mb-6 shadow-md">
             <span class="w-2 h-2 rounded-full bg-green-400 animate-ping"></span>
             Layanan Portal Mandiri 24/7
         </div>
@@ -719,24 +719,24 @@
             Urus Dokumen & Surat dari Mana Saja
         </h2>
         <p class="text-blue-100 text-base sm:text-lg max-w-2xl mx-auto mb-8 font-medium">
-            Ajukan permohonan surat keterangan, lacak status proses permohonan, dan unduh dokumen resmi dari portal layanan mandiri warga.
+            Ajukan permohonan surat keterangan, lacak status permohonan, dan unduh dokumen resmi langsung dari portal warga {{ \App\Services\SettingService::getValue('village_name', 'Pemerintah Desa') }}.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
-            <a href="{{ route('warga.register') }}" class="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-amber-950 font-black text-sm px-7 py-3.5 rounded-xl shadow-xl hover:scale-105 transition-all flex items-center gap-2" id="btn-register-warga">
+            <a href="{{ route('warga.register') }}" class="portal-cta-btn-primary text-sm px-7 py-3.5 rounded-xl flex items-center gap-2" id="btn-register-warga">
                 Daftar Portal Warga — Gratis
                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                 </svg>
             </a>
-            <a href="{{ route('layanan.index') }}" class="bg-white/15 hover:bg-white/25 text-white font-extrabold text-sm px-7 py-3.5 rounded-xl border border-white/30 backdrop-blur-md transition-all" id="btn-learn-layanan">
+            <a href="{{ route('layanan.index') }}" class="portal-cta-btn-secondary text-sm px-7 py-3.5 rounded-xl" id="btn-learn-layanan">
                 Pelajari Katalog Layanan
             </a>
         </div>
 
         {{-- Feature badges --}}
         <div class="flex flex-wrap justify-center gap-2.5 mt-8">
-            @foreach(['Surat Online', 'Tracking Realtime', 'Download PDF Berbintang', 'Notifikasi WhatsApp', 'Enkripsi Data'] as $feat)
-            <span class="bg-white/15 text-white font-semibold text-xs px-3.5 py-1.5 rounded-full border border-white/20 backdrop-blur-sm">
+            @foreach(['Surat Online 24 Jam', 'Tracking Status Realtime', 'Download PDF Berbintang', 'Notifikasi WhatsApp', 'Enkripsi Data Aman'] as $feat)
+            <span class="portal-cta-pill text-white font-semibold text-xs px-3.5 py-1.5 rounded-full">
                 ✓ {{ $feat }}
             </span>
             @endforeach
