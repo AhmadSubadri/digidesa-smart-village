@@ -48,18 +48,26 @@ class AuthController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
+        // Find matching resident if exists
+        $matchingResident = Resident::all()->first(function ($r) use ($validated) {
+            return $r->nik === $validated['nik'];
+        });
+
         $warga = WargaUser::create([
             'nik' => $validated['nik'],
-            'full_name' => $validated['full_name'],
+            'name' => $validated['full_name'],
             'phone' => $validated['phone'],
             'email' => $validated['email'] ?? null,
             'password' => Hash::make($validated['password']),
-            'status' => 'pending',
+            'resident_id' => $matchingResident?->id,
+            'is_verified' => $matchingResident !== null,
+            'verified_at' => $matchingResident ? now() : null,
+            'is_active' => true,
         ]);
 
         Auth::guard('warga')->login($warga);
 
-        return redirect()->route('warga.dashboard')->with('success', 'Pendaftaran berhasil! Akun Anda siap digunakan.');
+        return redirect()->route('warga.dashboard')->with('success', 'Pendaftaran berhasil! Selamat datang di Portal Warga Mandiri.');
     }
 
     public function logout(Request $request)

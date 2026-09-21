@@ -24,4 +24,19 @@ class BudgetItem extends Model
     {
         return $this->belongsTo(BudgetPeriod::class);
     }
+
+    public function scopeIncome($query)
+    {
+        return $query->where('type', 'income');
+    }
+
+    public function scopeExpense($query)
+    {
+        return $query->where('type', 'expense');
+    }
+
+    public function scopeFinancing($query)
+    {
+        return $query->where('type', 'financing');
+    }
 }

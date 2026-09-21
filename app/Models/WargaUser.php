@@ -27,6 +27,11 @@ class WargaUser extends Authenticatable
         'verified_at' => 'datetime',
     ];
 
+    public function getFullNameAttribute(): string
+    {
+        return $this->name ?? $this->resident?->full_name ?? 'Warga';
+    }
+
     public function resident(): BelongsTo
     {
         return $this->belongsTo(Resident::class);

@@ -23,6 +23,11 @@ class BudgetPeriod extends Model
         return $this->hasMany(BudgetItem::class)->orderBy('sort_order');
     }
 
+    public function items(): HasMany
+    {
+        return $this->budgetItems();
+    }
+
     public function developments(): HasMany
     {
         return $this->hasMany(Development::class);
