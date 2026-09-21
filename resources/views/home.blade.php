@@ -26,12 +26,12 @@
 
                 {{-- Headline --}}
                 <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight">
-                    Pusat Informasi & Pelayanan Administrasi Warga Terpadu
+                    {{ \App\Services\SettingService::getValue('hero_title', 'Pusat Informasi & Pelayanan Administrasi Warga Terpadu') }}
                 </h1>
 
                 {{-- Subtitle --}}
                 <p class="text-base lg:text-lg text-slate-300 leading-relaxed font-normal max-w-2xl">
-                    {{ \App\Services\SettingService::getValue('village_tagline', 'Akses layanan mandiri kependudukan, transparansi anggaran, publikasi warta resmi, dan data statistik kalurahan secara digital, cepat, dan transparan.') }}
+                    {{ \App\Services\SettingService::getValue('hero_subtitle', \App\Services\SettingService::getValue('village_tagline', 'Akses layanan mandiri kependudukan, transparansi anggaran, publikasi warta resmi, dan data statistik kalurahan secara digital, cepat, dan transparan.')) }}
                 </p>
 
                 {{-- Action Buttons --}}
@@ -235,7 +235,7 @@
         </div>
 
         @php
-            $quickLinksList = [
+            $defaultQuickLinks = [
                 ['title' => 'Permohonan Surat', 'desc' => 'Pengajuan surat resmi mandiri online', 'url' => route('layanan.surat'), 'icon' => 'document-text'],
                 ['title' => 'Data Kependudukan', 'desc' => 'Statistik dan demografi penduduk', 'url' => route('statistik.kependudukan'), 'icon' => 'users'],
                 ['title' => 'Transparansi APBDes', 'desc' => 'Laporan anggaran pendapatan & belanja', 'url' => route('transparansi.apbkal'), 'icon' => 'banknotes'],
@@ -245,10 +245,19 @@
                 ['title' => 'PPID Dokumen Publik', 'desc' => 'Unduh berkas informasi keterbukaan', 'url' => route('ppid.index'), 'icon' => 'folder-arrow-down'],
                 ['title' => 'Peta Spasial Wilayah', 'desc' => 'Peta interaktif batas & fasilitas desa', 'url' => route('peta'), 'icon' => 'map-pin'],
             ];
+
+            $linksToDisplay = (isset($quickLinks) && $quickLinks->isNotEmpty())
+                ? $quickLinks->map(fn($item) => [
+                    'title' => $item->title,
+                    'desc'  => $item->description ?? '',
+                    'url'   => str_starts_with($item->url, 'http') || str_starts_with($item->url, '/') ? $item->url : (Route::has($item->url) ? route($item->url) : $item->url),
+                    'icon'  => $item->icon ?? 'document-text',
+                ])
+                : $defaultQuickLinks;
         @endphp
 
         <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-4 lg:gap-5">
-            @foreach($quickLinksList as $item)
+            @foreach($linksToDisplay as $item)
             <a href="{{ $item['url'] }}" class="group p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 hover:border-blue-500/50 hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg transition-all flex flex-col justify-between">
                 <div class="flex items-start justify-between gap-3 mb-3">
                     <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-colors shrink-0">
