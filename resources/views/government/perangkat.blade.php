@@ -24,7 +24,7 @@
             <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
                 <div class="w-28 h-28 mx-auto rounded-2xl overflow-hidden mb-4 bg-slate-100">
                     <img
-                        src="{{ $official->photo_path ? Storage::url($official->photo_path) : 'https://ui-avatars.com/api/?name=' . urlencode($official->name) . '&background=1B4F8A&color=fff&size=200' }}"
+                        src="{{ $official->photo_path ? Storage::url($official->photo_path) : placeholder_image(200, 200, $official->name) }}"
                         alt="{{ $official->name }}"
                         class="w-full h-full object-cover"
                     >

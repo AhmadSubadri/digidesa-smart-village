@@ -73,13 +73,19 @@ class HomeController extends Controller
             ->limit(6)
             ->get();
 
-        // Village Stats
-        $stats = [
-            'population' => \App\Models\Setting::getValue('village_population', '28.394'),
-            'families'   => \App\Models\Setting::getValue('village_families', '9.800'),
-            'padukuhan'  => \App\Models\Setting::getValue('village_padukuhan', '18'),
-            'area'       => \App\Models\Setting::getValue('village_area', '948,6'),
-        ];
+        // Village Stats (Realtime DB Count + Cached for performance)
+        $stats = \Illuminate\Support\Facades\Cache::remember('home.village_stats', 300, function () {
+            $residentCount = \App\Models\Resident::active()->count();
+            $familyCount = \App\Models\Resident::active()->where('is_head_of_family', true)->count();
+            $padukuhanCount = \App\Models\Padukuhan::count();
+
+            return [
+                'population' => $residentCount > 0 ? number_format($residentCount, 0, ',', '.') : \App\Models\Setting::getValue('village_population', '28.394'),
+                'families'   => $familyCount > 0 ? number_format($familyCount, 0, ',', '.') : \App\Models\Setting::getValue('village_families', '9.800'),
+                'padukuhan'  => $padukuhanCount > 0 ? (string)$padukuhanCount : \App\Models\Setting::getValue('village_padukuhan', '18'),
+                'area'       => \App\Models\Setting::getValue('village_area', '948,6'),
+            ];
+        });
 
         // IDM Latest Score
         $idmScore = IdmScore::orderByDesc('year')->first();
