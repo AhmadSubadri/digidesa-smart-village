@@ -107,7 +107,9 @@
                 <div class="flex-1 overflow-hidden font-medium text-xs text-blue-100 dark:text-slate-200">
                     <marquee behavior="scroll" direction="left" scrollamount="4" onmouseover="this.stop();" onmouseout="this.start();" class="py-0.5">
                         @php
-                            $tickerAnnouncements = \App\Models\Announcement::ticker()->orderByDesc('updated_at')->limit(8)->get();
+                            $tickerAnnouncements = \Illuminate\Support\Facades\Cache::remember('layout.ticker_announcements', 300, function () {
+                                return \App\Models\Announcement::ticker()->orderByDesc('updated_at')->limit(8)->get();
+                            });
                         @endphp
                         @if($tickerAnnouncements->isEmpty())
                             <span class="mx-6 font-semibold text-amber-300">• Selamat datang di Platform Portal Digital Desa (Smart Village System)</span>
@@ -322,7 +324,9 @@
          POPUP ANNOUNCEMENT
     ==================================================== --}}
     @php
-        $popupAnnouncement = \App\Models\Announcement::popup()->orderByDesc('created_at')->first();
+        $popupAnnouncement = \Illuminate\Support\Facades\Cache::remember('layout.popup_announcement', 300, function () {
+            return \App\Models\Announcement::popup()->orderByDesc('created_at')->first();
+        });
     @endphp
     @if($popupAnnouncement)
     <div

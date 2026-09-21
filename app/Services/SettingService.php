@@ -7,7 +7,8 @@ use App\Models\Setting;
 
 class SettingService
 {
-    protected int $cacheTtl = 3600; // 1 hour
+    protected int $cacheTtl = 86400; // 24 hours
+    protected static ?array $memoizedSettings = null;
 
     public static function getValue(string $key, mixed $default = null): mixed
     {
@@ -16,15 +17,27 @@ class SettingService
 
     public function get(string $key, mixed $default = null): mixed
     {
-        return Cache::remember("setting.{$key}", $this->cacheTtl, function () use ($key, $default) {
-            $setting = Setting::where('key', $key)->first();
+        $all = $this->all();
+        return $all[$key] ?? $default;
+    }
 
-            if (!$setting) {
-                return $default;
+    public function all(): array
+    {
+        if (static::$memoizedSettings !== null) {
+            return static::$memoizedSettings;
+        }
+
+        static::$memoizedSettings = Cache::remember('settings.all_keyed', $this->cacheTtl, function () {
+            try {
+                return Setting::all()->mapWithKeys(function ($s) {
+                    return [$s->key => $this->castValue($s->value, $s->type)];
+                })->toArray();
+            } catch (\Throwable) {
+                return [];
             }
-
-            return $this->castValue($setting->value, $setting->type);
         });
+
+        return static::$memoizedSettings;
     }
 
     public function set(string $key, mixed $value): void
@@ -34,8 +47,7 @@ class SettingService
             ['value' => is_array($value) ? json_encode($value) : $value]
         );
 
-        Cache::forget("setting.{$key}");
-        Cache::forget('settings.all');
+        $this->clearCache();
     }
 
     public function getGroup(string $group): \Illuminate\Support\Collection
@@ -52,16 +64,12 @@ class SettingService
 
     public function clearCache(string $key = null): void
     {
-        if ($key) {
-            Cache::forget("setting.{$key}");
-        } else {
-            // Clear all setting caches
-            Setting::all()->each(fn ($s) => Cache::forget("setting.{$s->key}"));
-            Cache::forget('settings.all');
+        static::$memoizedSettings = null;
+        Cache::forget('settings.all_keyed');
+        Cache::forget('settings.all');
 
-            foreach (['general', 'contact', 'social', 'seo', 'appearance'] as $group) {
-                Cache::forget("settings.group.{$group}");
-            }
+        foreach (['general', 'contact', 'social', 'seo', 'appearance'] as $group) {
+            Cache::forget("settings.group.{$group}");
         }
     }
 
@@ -70,8 +78,9 @@ class SettingService
         return match ($type) {
             'boolean' => (bool) $value,
             'number'  => (float) $value,
-            'json'    => json_decode($value, true),
+            'json'    => is_string($value) ? json_decode($value, true) : (array) $value,
             default   => $value,
         };
     }
 }
+
