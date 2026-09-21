@@ -23,7 +23,7 @@
             @forelse($destinations as $dest)
             <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col justify-between">
                 <div class="aspect-video relative bg-slate-100">
-                    <img src="https://picsum.photos/600/400?random={{ $dest->id }}" alt="{{ $dest->name }}" class="w-full h-full object-cover">
+                    <img src="{{ placeholder_image(600, 400, $dest->name) }}" alt="{{ $dest->name }}" class="w-full h-full object-cover">
                 </div>
                 <div class="p-6">
                     <span class="badge badge-primary uppercase text-[10px] mb-2">{{ $dest->category ?? 'Wisata' }}</span>

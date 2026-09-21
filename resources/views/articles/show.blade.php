@@ -90,7 +90,7 @@
                     <a href="{{ route('berita.show', $rel->slug) }}" class="news-card group">
                         <div class="news-card-img-wrap">
                             <img
-                                src="{{ $rel->featured_image ? Storage::url($rel->featured_image) : 'https://picsum.photos/400/250?random=' . $rel->id }}"
+                                src="{{ $rel->featured_image ? Storage::url($rel->featured_image) : placeholder_image(400, 250, $rel->title) }}"
                                 alt="{{ $rel->title }}"
                                 class="news-card-img"
                                 loading="lazy"

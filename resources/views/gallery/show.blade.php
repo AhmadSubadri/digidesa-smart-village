@@ -28,7 +28,7 @@
             @for($i=1; $i<=8; $i++)
             <div class="rounded-xl overflow-hidden shadow-sm aspect-square bg-slate-100 group">
                 <img
-                    src="https://picsum.photos/600/600?random={{ $album->id * 10 + $i }}"
+                    src="{{ placeholder_image(600, 600, $album->title . ' #' . $i) }}"
                     alt="Foto {{ $i }}"
                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     loading="lazy"

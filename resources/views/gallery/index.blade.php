@@ -22,7 +22,7 @@
             <a href="{{ route('galeri.show', $album->slug) }}" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 group hover:shadow-md transition-all">
                 <div class="aspect-square relative overflow-hidden bg-slate-100">
                     <img
-                        src="{{ $album->cover_image ? Storage::url($album->cover_image) : 'https://picsum.photos/400/400?random=' . $album->id }}"
+                        src="{{ $album->cover_image ? Storage::url($album->cover_image) : placeholder_image(400, 400, $album->title) }}"
                         alt="{{ $album->title }}"
                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"

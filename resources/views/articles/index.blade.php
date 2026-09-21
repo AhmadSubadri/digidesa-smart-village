@@ -75,7 +75,7 @@
                     <a href="{{ route('berita.show', $article->slug) }}" class="news-card group">
                         <div class="news-card-img-wrap">
                             <img
-                                src="{{ $article->featured_image ? Storage::url($article->featured_image) : 'https://picsum.photos/600/400?random=' . $article->id }}"
+                                src="{{ $article->featured_image ? Storage::url($article->featured_image) : placeholder_image(600, 400, $article->title) }}"
                                 alt="{{ $article->title }}"
                                 class="news-card-img"
                                 loading="lazy"
@@ -147,7 +147,7 @@
                         @foreach($featured as $feat)
                         <a href="{{ route('berita.show', $feat->slug) }}" class="flex gap-3 group">
                             <img
-                                src="{{ $feat->featured_image ? Storage::url($feat->featured_image) : 'https://picsum.photos/100/100?random=' . $feat->id }}"
+                                src="{{ $feat->featured_image ? Storage::url($feat->featured_image) : placeholder_image(120, 120, $feat->title) }}"
                                 alt="{{ $feat->title }}"
                                 class="w-16 h-16 rounded-xl object-cover shrink-0"
                             >
