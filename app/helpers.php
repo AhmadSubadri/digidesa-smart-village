@@ -62,3 +62,23 @@ if (!function_exists('placeholder_image')) {
     }
 }
 
+if (!function_exists('storage_or_placeholder')) {
+    /**
+     * Return public storage URL if the file actually exists on disk, otherwise return inline SVG placeholder.
+     */
+    function storage_or_placeholder(?string $path, int $width = 800, int $height = 500, string $title = 'Kalurahan Condongcatur'): string
+    {
+        if (!empty($path)) {
+            // Check if file exists in public storage disk or public path
+            if (\Illuminate\Support\Facades\Storage::disk('public')->exists($path)) {
+                return \Illuminate\Support\Facades\Storage::url($path);
+            }
+            if (file_exists(public_path('storage/' . $path)) || file_exists(public_path($path))) {
+                return asset(str_starts_with($path, 'storage/') ? $path : 'storage/' . $path);
+            }
+        }
+
+        return placeholder_image($width, $height, $title);
+    }
+}
+

@@ -78,9 +78,21 @@ class HomeController extends Controller
             $residentCount = \App\Models\Resident::active()->count();
             $familyCount = \App\Models\Resident::active()->where('is_head_of_family', true)->count();
             $padukuhanCount = \App\Models\Padukuhan::count();
+            $maleCount = \App\Models\Resident::active()->male()->count();
+            $femaleCount = \App\Models\Resident::active()->female()->count();
+
+            $totalPop = $residentCount > 0 ? $residentCount : 28394;
+            $male = $maleCount > 0 ? $maleCount : 14120;
+            $female = $femaleCount > 0 ? $femaleCount : 14274;
+            $totalGender = max(1, $male + $female);
 
             return [
-                'population' => $residentCount > 0 ? number_format($residentCount, 0, ',', '.') : \App\Models\Setting::getValue('village_population', '28.394'),
+                'population' => number_format($totalPop, 0, ',', '.'),
+                'total_raw'  => $totalPop,
+                'male'       => number_format($male, 0, ',', '.'),
+                'female'     => number_format($female, 0, ',', '.'),
+                'male_pct'   => round(($male / $totalGender) * 100, 1),
+                'female_pct' => round(($female / $totalGender) * 100, 1),
                 'families'   => $familyCount > 0 ? number_format($familyCount, 0, ',', '.') : \App\Models\Setting::getValue('village_families', '9.800'),
                 'padukuhan'  => $padukuhanCount > 0 ? (string)$padukuhanCount : \App\Models\Setting::getValue('village_padukuhan', '18'),
                 'area'       => \App\Models\Setting::getValue('village_area', '948,6'),
