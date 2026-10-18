@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Agenda Kegiatan')
-@section('description', 'Jadwal dan agenda kegiatan masyarakat dan Pemerintah {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}.')
+@section('description', 'Jadwal dan agenda kegiatan masyarakat dan Pemerintah ' . setting('village_name', 'Pemerintah Desa') . '.')
 
 @section('content')
 <div class="breadcrumb-section">

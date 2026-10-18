@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Katalog Surat Keterangan')
-@section('description', 'Katalog dan syarat pengurusan surat keterangan {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}.')
+@section('description', 'Katalog dan syarat pengurusan surat keterangan ' . setting('village_name', 'Pemerintah Desa') . '.')
 
 @section('content')
 <div class="breadcrumb-section">

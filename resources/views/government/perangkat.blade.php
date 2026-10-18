@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Perangkat Kalurahan')
-@section('description', 'Daftar pamong dan perangkat {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}, Sleman.')
+@section('description', 'Daftar pamong dan perangkat ' . setting('village_name', 'Pemerintah Desa') . ', Sleman.')
 
 @section('content')
 <div class="breadcrumb-section">

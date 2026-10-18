@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Potensi UMKM Desa')
-@section('description', 'Katalog Usaha Mikro Kecil dan Menengah (UMKM) {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}.')
+@section('description', 'Katalog Usaha Mikro Kecil dan Menengah (UMKM) ' . setting('village_name', 'Pemerintah Desa') . '.')
 
 @section('content')
 <div class="breadcrumb-section">

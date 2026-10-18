@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Visi & Misi')
-@section('description', 'Visi dan Misi Pembangunan {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}, Kapanewon Depok, Kabupaten Sleman.')
+@section('description', 'Visi dan Misi Pembangunan ' . setting('village_name', 'Pemerintah Desa') . ', Kapanewon Depok, Kabupaten Sleman.')
 
 @section('content')
 <div class="breadcrumb-section">

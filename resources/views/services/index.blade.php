@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Layanan Publik Mandiri')
-@section('description', 'Portal layanan administrasi publik dan permohonan surat keterangan {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}.')
+@section('description', 'Portal layanan administrasi publik dan permohonan surat keterangan ' . setting('village_name', 'Pemerintah Desa') . '.')
 
 @section('content')
 <div class="breadcrumb-section">

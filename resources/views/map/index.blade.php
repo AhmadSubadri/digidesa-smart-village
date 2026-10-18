@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Peta Interaktif Wilayah')
-@section('description', 'Peta interaktif {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}, Sleman dengan lokasi padukuhan, UMKM, dan objek wisata.')
+@section('description', 'Peta interaktif ' . setting('village_name', 'Pemerintah Desa') . ', Sleman dengan lokasi padukuhan, UMKM, dan objek wisata.')
 
 @push('head')
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />

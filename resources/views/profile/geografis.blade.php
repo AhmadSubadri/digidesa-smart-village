@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Geografis & Peta Wilayah')
-@section('description', 'Kondisi geografis, batas wilayah, dan data padukuhan {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}, Sleman.')
+@section('description', 'Kondisi geografis, batas wilayah, dan data padukuhan ' . setting('village_name', 'Pemerintah Desa') . ', Sleman.')
 
 @section('content')
 <div class="breadcrumb-section">

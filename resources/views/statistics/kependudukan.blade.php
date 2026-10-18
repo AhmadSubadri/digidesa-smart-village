@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Statistik Kependudukan')
-@section('description', 'Grafik dan data statistik kependudukan {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}.')
+@section('description', 'Grafik dan data statistik kependudukan ' . setting('village_name', 'Pemerintah Desa') . '.')
 
 @push('head')
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>

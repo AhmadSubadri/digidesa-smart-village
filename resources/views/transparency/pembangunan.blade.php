@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Transparansi Pembangunan')
-@section('description', 'Data progres dan realisasi proyek pembangunan fisik {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}.')
+@section('description', 'Data progres dan realisasi proyek pembangunan fisik ' . setting('village_name', 'Pemerintah Desa') . '.')
 
 @section('content')
 <div class="breadcrumb-section">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'PPID Dokumen Publik')
-@section('description', 'Pejabat Pengelola Informasi dan Dokumentasi (PPID) {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}.')
+@section('description', 'Pejabat Pengelola Informasi dan Dokumentasi (PPID) ' . setting('village_name', 'Pemerintah Desa') . '.')
 
 @section('content')
 <div class="breadcrumb-section">

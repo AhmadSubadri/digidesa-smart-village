@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Sejarah Desa')
-@section('description', 'Sejarah dan asal-usul ditemukannya {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }} sejak berdirinya pada tahun 1946.')
+@section('description', 'Sejarah dan asal-usul ditemukannya ' . setting('village_name', 'Pemerintah Desa') . ' sejak berdirinya pada tahun 1946.')
 
 @section('content')
 <div class="breadcrumb-section">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Destinasi Wisata')
-@section('description', 'Destinasi wisata dan tempat bersejarah di {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}.')
+@section('description', 'Destinasi wisata dan tempat bersejarah di ' . setting('village_name', 'Pemerintah Desa') . '.')
 
 @section('content')
 <div class="breadcrumb-section">

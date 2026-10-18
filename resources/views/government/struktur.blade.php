@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Struktur Organisasi')
-@section('description', 'Bagan struktur organisasi tata kerja {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}, Sleman.')
+@section('description', 'Bagan struktur organisasi tata kerja ' . setting('village_name', 'Pemerintah Desa') . ', Sleman.')
 
 @section('content')
 <div class="breadcrumb-section">

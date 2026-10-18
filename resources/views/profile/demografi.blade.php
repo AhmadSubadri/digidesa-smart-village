@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Demografi & Statistik Penduduk')
-@section('description', 'Statistik kependudukan, komposisi jenis kelamin, dan usia warga {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}.')
+@section('description', 'Statistik kependudukan, komposisi jenis kelamin, dan usia warga ' . setting('village_name', 'Pemerintah Desa') . '.')
 
 @section('content')
 <div class="breadcrumb-section">

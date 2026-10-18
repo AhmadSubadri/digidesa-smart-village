@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Kontak Kami')
-@section('description', 'Hubungi {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}, alamat kantor, telepon, email, dan Google Maps.')
+@section('description', 'Hubungi ' . setting('village_name', 'Pemerintah Desa') . ', alamat kantor, telepon, email, dan Google Maps.')
 
 @section('content')
 <div class="breadcrumb-section">
