@@ -9,20 +9,25 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class LetterRequest extends Model
 {
     protected $fillable = [
-        'request_number', 'resident_id', 'warga_user_id', 'letter_type_id',
+        'request_number', 'letter_number', 'sequence_number',
+        'resident_id', 'warga_user_id', 'letter_type_id',
         'status', 'form_data', 'attachments', 'notes', 'rejection_reason',
+        'rt_rw_id', 'rt_rw_approved_at',
         'verified_by', 'verified_at', 'processed_by', 'processed_at',
         'signed_by', 'signed_at', 'completed_at',
-        'pdf_path', 'qr_code_token', 'signature_image_path', 'letter_number',
+        'pdf_path', 'docx_path', 'qr_code_token', 'signature_image_path',
+        'wa_notification_sent',
     ];
 
     protected $casts = [
         'form_data' => 'array',
         'attachments' => 'array',
+        'rt_rw_approved_at' => 'datetime',
         'verified_at' => 'datetime',
         'processed_at' => 'datetime',
         'signed_at' => 'datetime',
         'completed_at' => 'datetime',
+        'wa_notification_sent' => 'boolean',
     ];
 
     public function resident(): BelongsTo
@@ -53,6 +58,16 @@ class LetterRequest extends Model
     public function signedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'signed_by');
+    }
+
+    public function rtRw(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'rt_rw_id');
+    }
+
+    public function register(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(LetterRegister::class);
     }
 
     public function logs(): HasMany

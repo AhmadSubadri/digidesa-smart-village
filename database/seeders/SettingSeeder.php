@@ -11,24 +11,24 @@ class SettingSeeder extends Seeder
     {
         $settings = [
             // General
-            ['group' => 'general', 'key' => 'site_name', 'value' => 'Kalurahan Condongcatur', 'type' => 'text', 'label' => 'Nama Website', 'sort_order' => 1],
-            ['group' => 'general', 'key' => 'site_tagline', 'value' => 'Kalurahan Condongcatur, Kapanewon Depok, Sleman, D.I. Yogyakarta', 'type' => 'text', 'label' => 'Tagline Website', 'sort_order' => 2],
-            ['group' => 'general', 'key' => 'site_description', 'value' => 'Website resmi Kalurahan Condongcatur sebagai pusat informasi dan layanan publik warga.', 'type' => 'textarea', 'label' => 'Deskripsi Website', 'sort_order' => 3],
+            ['group' => 'general', 'key' => 'site_name', 'value' => 'DesaHub', 'type' => 'text', 'label' => 'Nama Website / Desa', 'sort_order' => 1],
+            ['group' => 'general', 'key' => 'site_tagline', 'value' => 'Smart Village Ecosystem & Pusat Layanan Mandiri Desa', 'type' => 'text', 'label' => 'Tagline Website', 'sort_order' => 2],
+            ['group' => 'general', 'key' => 'site_description', 'value' => 'Portal resmi sistem informasi desa sebagai pusat transparansi, publikasi, dan layanan administrasi mandiri warga.', 'type' => 'textarea', 'label' => 'Deskripsi Website', 'sort_order' => 3],
             ['group' => 'general', 'key' => 'site_logo', 'value' => null, 'type' => 'image', 'label' => 'Logo Website', 'sort_order' => 4],
             ['group' => 'general', 'key' => 'site_favicon', 'value' => null, 'type' => 'image', 'label' => 'Favicon', 'sort_order' => 5],
             ['group' => 'general', 'key' => 'site_og_image', 'value' => null, 'type' => 'image', 'label' => 'OG Image (Share)', 'sort_order' => 6],
 
             // Contact
-            ['group' => 'contact', 'key' => 'contact_address', 'value' => 'Jl. Manggis No. 1, Condongcatur, Depok, Sleman, D.I. Yogyakarta 55283', 'type' => 'textarea', 'label' => 'Alamat', 'sort_order' => 1],
-            ['group' => 'contact', 'key' => 'contact_phone', 'value' => '(0274) 881094', 'type' => 'text', 'label' => 'Nomor Telepon', 'sort_order' => 2],
-            ['group' => 'contact', 'key' => 'contact_email', 'value' => 'condongcatur1946@gmail.com', 'type' => 'email', 'label' => 'Email', 'sort_order' => 3],
-            ['group' => 'contact', 'key' => 'contact_maps_url', 'value' => 'https://maps.google.com/?q=Kalurahan+Condongcatur', 'type' => 'url', 'label' => 'Google Maps URL', 'sort_order' => 4],
+            ['group' => 'contact', 'key' => 'contact_address', 'value' => 'Jl. Raya Desa No. 1, Kantor Pemerintah Desa', 'type' => 'textarea', 'label' => 'Alamat', 'sort_order' => 1],
+            ['group' => 'contact', 'key' => 'contact_phone', 'value' => '(021) 12345678', 'type' => 'text', 'label' => 'Nomor Telepon', 'sort_order' => 2],
+            ['group' => 'contact', 'key' => 'contact_email', 'value' => 'kontak@desa.id', 'type' => 'email', 'label' => 'Email', 'sort_order' => 3],
+            ['group' => 'contact', 'key' => 'contact_maps_url', 'value' => 'https://maps.google.com', 'type' => 'url', 'label' => 'Google Maps URL', 'sort_order' => 4],
             ['group' => 'contact', 'key' => 'contact_lat', 'value' => '-7.7500', 'type' => 'text', 'label' => 'Latitude Kantor', 'sort_order' => 5],
             ['group' => 'contact', 'key' => 'contact_lng', 'value' => '110.3833', 'type' => 'text', 'label' => 'Longitude Kantor', 'sort_order' => 6],
 
             // Social Media
-            ['group' => 'social', 'key' => 'social_facebook', 'value' => 'https://facebook.com/condongcatur', 'type' => 'url', 'label' => 'Facebook', 'sort_order' => 1],
-            ['group' => 'social', 'key' => 'social_instagram', 'value' => 'https://instagram.com/condongcatur', 'type' => 'url', 'label' => 'Instagram', 'sort_order' => 2],
+            ['group' => 'social', 'key' => 'social_facebook', 'value' => 'https://facebook.com/desahub', 'type' => 'url', 'label' => 'Facebook', 'sort_order' => 1],
+            ['group' => 'social', 'key' => 'social_instagram', 'value' => 'https://instagram.com/desahub', 'type' => 'url', 'label' => 'Instagram', 'sort_order' => 2],
             ['group' => 'social', 'key' => 'social_youtube', 'value' => null, 'type' => 'url', 'label' => 'YouTube', 'sort_order' => 3],
             ['group' => 'social', 'key' => 'social_twitter', 'value' => null, 'type' => 'url', 'label' => 'Twitter/X', 'sort_order' => 4],
             ['group' => 'social', 'key' => 'social_whatsapp', 'value' => '6281234567890', 'type' => 'text', 'label' => 'WhatsApp (no +)', 'sort_order' => 5],

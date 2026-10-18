@@ -13,7 +13,7 @@ class LetterTypeSeeder extends Seeder
             [
                 'code' => 'SKD',
                 'name' => 'Surat Keterangan Domisili',
-                'description' => 'Surat keterangan yang menyatakan bahwa seseorang berdomisili di wilayah Kalurahan Condongcatur.',
+                'description' => 'Surat keterangan yang menyatakan bahwa seseorang berdomisili di wilayah desa.',
                 'requirements' => [
                     ['label' => 'KTP Asli', 'type' => 'file', 'required' => true],
                     ['label' => 'Kartu Keluarga', 'type' => 'file', 'required' => true],
@@ -27,7 +27,7 @@ class LetterTypeSeeder extends Seeder
             [
                 'code' => 'SKU',
                 'name' => 'Surat Keterangan Usaha',
-                'description' => 'Surat keterangan yang menyatakan bahwa pemohon memiliki usaha di wilayah Kalurahan Condongcatur.',
+                'description' => 'Surat keterangan yang menyatakan bahwa pemohon memiliki usaha di wilayah desa.',
                 'requirements' => [
                     ['label' => 'KTP Asli', 'type' => 'file', 'required' => true],
                     ['label' => 'Kartu Keluarga', 'type' => 'file', 'required' => true],
@@ -73,7 +73,7 @@ class LetterTypeSeeder extends Seeder
             [
                 'code' => 'SKCK_PENGANTAR',
                 'name' => 'Surat Pengantar SKCK',
-                'description' => 'Surat pengantar dari kalurahan untuk keperluan pengurusan SKCK di Polsek.',
+                'description' => 'Surat pengantar dari pemerintah desa untuk keperluan pengurusan SKCK di Polsek.',
                 'requirements' => [
                     ['label' => 'KTP Asli', 'type' => 'file', 'required' => true],
                     ['label' => 'Kartu Keluarga', 'type' => 'file', 'required' => true],
@@ -87,7 +87,7 @@ class LetterTypeSeeder extends Seeder
             [
                 'code' => 'SKPINDAH',
                 'name' => 'Surat Keterangan Pindah',
-                'description' => 'Surat keterangan untuk warga yang akan pindah keluar dari wilayah Kalurahan Condongcatur.',
+                'description' => 'Surat keterangan untuk warga yang akan pindah keluar dari wilayah desa.',
                 'requirements' => [
                     ['label' => 'KTP Asli', 'type' => 'file', 'required' => true],
                     ['label' => 'Kartu Keluarga', 'type' => 'file', 'required' => true],

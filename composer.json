@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.10.1",
         "livewire/livewire": "3.6",
         "maatwebsite/excel": "*",
+        "phpoffice/phpword": "^1.4",
         "simplesoftwareio/simple-qrcode": "*",
         "spatie/laravel-activitylog": "*",
         "spatie/laravel-backup": "*",

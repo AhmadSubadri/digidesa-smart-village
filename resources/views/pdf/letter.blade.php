@@ -34,20 +34,20 @@
 
     {{-- KOP SURAT --}}
     <div class="kop">
-        <div class="kop-title-kab">Pemerintah Kabupaten Sleman</div>
-        <div class="kop-title-kec">Kapanewon Depok</div>
-        <div class="kop-title-des">Kalurahan Condongcatur</div>
-        <div class="kop-alamat">Jl. Manggis No. 1, Condongcatur, Depok, Sleman 55283 | Telp: (0274) 881094 | Email: condongcatur1946@gmail.com</div>
+        <div class="kop-title-kab">{{ setting('regency_name', 'Pemerintah Daerah') }}</div>
+        <div class="kop-title-kec">{{ setting('district_name', 'Kecamatan / Kapanewon') }}</div>
+        <div class="kop-title-des">{{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}</div>
+        <div class="kop-alamat">{{ setting('contact_address', 'Kantor Pemerintah Desa') }} | Telp: {{ setting('contact_phone', '-') }} | Email: {{ setting('contact_email', '-') }}</div>
     </div>
 
     {{-- JUDUL SURAT --}}
     <div class="surat-header">
         <div class="surat-title">{{ strtoupper($letter->letterType?->name ?? 'Surat Keterangan') }}</div>
-        <div class="surat-nomor">Nomor: {{ $letter->request_number }}</div>
+        <div class="surat-nomor">Nomor: {{ $letter->letter_number ?? $letter->request_number }}</div>
     </div>
 
     {{-- ISI SURAT --}}
-    <p>Yang bertanda tangan di bawah ini Lurah Condongcatur, Kapanewon Depok, Kabupaten Sleman, menerangkan bahwa:</p>
+    <p>Yang bertanda tangan di bawah ini {{ setting('leader_title', 'Kepala Desa') }} {{ setting('village_name', setting('site_name', 'Desa')) }}, menerangkan bahwa:</p>
 
     <table class="content-table">
         <tr>
@@ -68,7 +68,7 @@
     </table>
 
     <p style="text-align: justify; text-indent: 30px;">
-        Orang tersebut di atas adalah benar-benar warga yang berdomisili/terdaftar di wilayah Kalurahan Condongcatur. Surat keterangan ini dibuat untuk dipergunakan sebagaimana mestinya.
+        Orang tersebut di atas adalah benar-benar warga yang berdomisili/terdaftar di wilayah {{ setting('village_name', setting('site_name', 'Desa')) }}. Surat keterangan ini dibuat untuk dipergunakan sebagaimana mestinya.
     </p>
 
     {{-- TANDA TANGAN & TTE QR CODE --}}
@@ -76,13 +76,13 @@
         <tr>
             <td></td>
             <td>
-                <div>Condongcatur, {{ $date }}</div>
-                <div style="font-weight: bold; margin-bottom: 10px;">Lurah Condongcatur</div>
+                <div>{{ setting('village_name', 'Desa') }}, {{ $date }}</div>
+                <div style="font-weight: bold; margin-bottom: 10px;">{{ setting('leader_title', 'Kepala Desa') }} {{ setting('village_name', setting('site_name', 'Desa')) }}</div>
                 <div class="stempel-box">
                     <div class="stempel-badge">Tanda Tangan Digital</div>
                     <div class="qr-box">Verifikasi Keabsahan: {{ $verificationUrl }}</div>
                 </div>
-                <div style="font-weight: bold; text-decoration: underline;">Drs. H. Ahmad Mukhlis, M.Si</div>
+                <div style="font-weight: bold; text-decoration: underline;">{{ setting('leader_name', 'Kepala Desa') }}</div>
             </td>
         </tr>
     </table>

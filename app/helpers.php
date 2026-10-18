@@ -33,7 +33,7 @@ if (!function_exists('placeholder_image')) {
     /**
      * Generate an ultra-fast, zero-network inline SVG placeholder image.
      */
-    function placeholder_image(int $width = 800, int $height = 500, string $title = 'Kalurahan Condongcatur'): string
+    function placeholder_image(int $width = 800, int $height = 500, string $title = 'DesaHub'): string
     {
         $safeTitle = htmlspecialchars(mb_strimwidth($title, 0, 45, '...'), ENT_QUOTES, 'UTF-8');
         $centerY = (int)($height / 2);
@@ -55,7 +55,7 @@ if (!function_exists('placeholder_image')) {
             .'<path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" transform="scale(2) translate(0, -6)"/>'
             .'</g>'
             .'<text x="50%" y="'.$textY.'" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" text-anchor="middle" letter-spacing="0.3">'.$safeTitle.'</text>'
-            .'<text x="50%" y="'.($textY + 18).'" fill="#60A5FA" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="1" text-transform="uppercase">PORTAL RESMI KALURAHAN</text>'
+            .'<text x="50%" y="'.($textY + 18).'" fill="#60A5FA" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="1" text-transform="uppercase">PORTAL RESMI DESA</text>'
             .'</svg>';
 
         return 'data:image/svg+xml;charset=UTF-8,' . rawurlencode($svg);

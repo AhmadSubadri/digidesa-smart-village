@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Beranda Resmi')
-@section('description', 'Website Resmi Pemerintah Kalurahan Condongcatur — Pusat informasi publik, layanan administrasi kependudukan mandiri, dan transparansi tata kelola kalurahan.')
+@section('description', 'Website Resmi Pemerintah Desa — Pusat informasi publik, layanan administrasi kependudukan mandiri, dan transparansi tata kelola desa.')
 
 @section('content')
 
@@ -21,7 +21,7 @@
                 {{-- Government Official Badge --}}
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/60 border border-blue-700/60 text-blue-200 text-xs font-semibold backdrop-blur-sm">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span>{{ \App\Services\SettingService::getValue('village_name', 'Pemerintah Kalurahan Condongcatur') }}</span>
+                    <span>{{ setting('village_name', 'Pemerintah Desa') }}</span>
                 </div>
 
                 {{-- Headline --}}
@@ -156,14 +156,14 @@
                             @empty
                             <div class="swiper-slide relative">
                                 <img
-                                    src="{{ placeholder_image(800, 600, 'Kantor Kalurahan Condongcatur') }}"
-                                    alt="Kalurahan Condongcatur"
+                                    src="{{ placeholder_image(800, 600, 'Kantor Pemerintah Desa') }}"
+                                    alt="Kantor Desa"
                                     class="w-full h-full object-cover"
                                 >
                                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6 text-left">
-                                    <h3 class="text-lg font-bold text-white">Kantor Pelayanan Pemerintah Kalurahan</h3>
-                                    <p class="text-xs text-slate-200 mt-1">Jl. Utama Condongcatur, Depok, Sleman, D.I. Yogyakarta</p>
+                                    <h3 class="text-lg font-bold text-white">Kantor Pelayanan Pemerintah Desa</h3>
+                                    <p class="text-xs text-slate-200 mt-1">{{ setting('contact_address', 'Jl. Raya Kantor Pemerintah Desa') }}</p>
                                 </div>
                             </div>
                             @endforelse
@@ -229,7 +229,7 @@
                             Layanan Mandiri & Akses Cepat Warga
                         </h2>
                         <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">
-                            Pilih menu layanan digital terpadu Kalurahan Condongcatur
+                            Pilih menu layanan digital terpadu {{ setting('village_name', 'desa') }}
                         </p>
                     </div>
                 </div>
@@ -333,7 +333,7 @@
                     Statistik & Indikator Pembangunan Kalurahan
                 </h2>
                 <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">
-                    Ringkasan data agregat kependudukan dan status capaian kemandirian Kalurahan Condongcatur secara berkala.
+                    Ringkasan data agregat kependudukan dan status capaian kemandirian {{ setting('village_name', 'desa') }} secara berkala.
                 </p>
             </div>
             <div class="flex items-center gap-2.5 self-start sm:self-auto shrink-0">
@@ -568,7 +568,7 @@
                     Kabar Terkini Pemerintahan Kalurahan
                 </h2>
                 <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
-                    Informasi resmi, liputan kegiatan pembangunan, dan berita seputar Kalurahan Condongcatur.
+                    Informasi resmi, liputan kegiatan pembangunan, dan berita seputar {{ setting('village_name', 'desa') }}.
                 </p>
             </div>
             <a href="{{ route('berita.index') }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-950/50 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 text-xs font-bold transition-all shrink-0">
@@ -907,7 +907,7 @@
                 Pimpinan & Pamong Kalurahan
             </h2>
             <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
-                Jajaran aparatur pemerintah Kalurahan Condongcatur yang berdedikasi melayani seluruh lapisan masyarakat.
+                Jajaran aparatur pemerintah {{ setting('village_name', 'desa') }} yang berdedikasi melayani seluruh lapisan masyarakat.
             </p>
         </div>
 
@@ -945,30 +945,65 @@
 {{-- ============================================================
      PORTAL CITIZEN CTA (Layanan Mandiri Warga)
 ============================================================ --}}
-<section class="py-20 bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950 text-white relative overflow-hidden" aria-labelledby="cta-title">
-    {{-- Glow circles --}}
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-blue-500/15 rounded-full blur-3xl pointer-events-none"></div>
+<section class="py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white relative overflow-hidden border-t border-slate-800" aria-labelledby="cta-title">
+    {{-- Decorative Glow Background --}}
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="container-sid text-center relative z-10 max-w-3xl mx-auto">
-        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-white text-xs font-bold backdrop-blur-md border border-white/15 mb-5">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        
+        {{-- Pill Badge --}}
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/15 text-blue-200 text-xs font-bold backdrop-blur-md border border-blue-400/25 mb-5 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             Layanan Administrasi Digital Terpadu
         </span>
+
+        {{-- Heading --}}
         <h2 id="cta-title" class="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight tracking-tight mb-4">
             Ajukan Surat Keterangan Tanpa Antre di Kantor Kalurahan
         </h2>
-        <p class="text-xs sm:text-sm text-blue-100/80 leading-relaxed mb-8 max-w-2xl mx-auto">
-            Warga Kalurahan Condongcatur kini dapat mengajukan surat keterangan resmi secara daring, memantau verifikasi berkas secara real-time, dan mengunduh surat bertanda tangan elektronik (TTE) resmi.
+
+        {{-- Subtitle --}}
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto font-medium">
+            Warga {{ setting('village_name', 'desa') }} kini dapat mengajukan surat keterangan resmi secara daring, memantau proses verifikasi secara real-time, dan mengunduh berkas bertanda tangan elektronik (TTE) resmi kapan saja.
         </p>
 
-        <div class="flex flex-wrap items-center justify-center gap-4">
-            <a href="{{ route('warga.register') }}" class="px-7 py-3.5 rounded-2xl bg-white text-blue-950 hover:bg-blue-50 font-black text-xs sm:text-sm shadow-xl shadow-blue-900/30 transition-all hover:scale-105">
-                Daftar Akun Warga Baru
+        {{-- High Contrast Action Buttons --}}
+        <div class="flex flex-wrap items-center justify-center gap-4 mb-10">
+            <a href="{{ route('warga.register') }}" class="px-8 py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-black text-xs sm:text-sm shadow-xl shadow-blue-600/30 transition-all hover:scale-105 border border-blue-400/30 inline-flex items-center gap-2">
+                <span>Daftar Akun Warga Baru</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>
-            <a href="{{ route('warga.login') }}" class="px-7 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 backdrop-blur-sm transition-all">
-                Masuk ke Portal Warga
+            <a href="{{ route('warga.login') }}" class="px-8 py-3.5 rounded-2xl bg-slate-800/80 hover:bg-slate-700/80 text-white font-bold text-xs sm:text-sm border border-slate-600/60 backdrop-blur-md transition-all hover:scale-105 inline-flex items-center gap-2">
+                <svg class="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
+                <span>Masuk ke Portal Warga</span>
             </a>
         </div>
+
+        {{-- Trust Feature Indicators --}}
+        <div class="grid grid-cols-3 gap-3 pt-6 border-t border-white/10 text-center max-w-xl mx-auto">
+            <div class="flex flex-col items-center">
+                <div class="text-emerald-400 text-sm font-bold flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    <span>Layanan 24 Jam</span>
+                </div>
+                <span class="text-[10px] text-slate-400 mt-0.5">Pengajuan kapan saja</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="text-blue-400 text-sm font-bold flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    <span>TTE Resmi</span>
+                </div>
+                <span class="text-[10px] text-slate-400 mt-0.5">Tanda tangan tersertifikasi</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="text-amber-400 text-sm font-bold flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span>100% Bebas Biaya</span>
+                </div>
+                <span class="text-[10px] text-slate-400 mt-0.5">Tanpa pungutan liar</span>
+            </div>
+        </div>
+
     </div>
 </section>
 

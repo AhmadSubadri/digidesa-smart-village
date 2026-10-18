@@ -3,46 +3,37 @@
 namespace App\Services;
 
 use App\Models\LetterRequest;
-use Dompdf\Dompdf;
-use Dompdf\Options;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class LetterPdfService
 {
+    protected LetterDocumentService $documentService;
+
+    public function __construct(LetterDocumentService $documentService)
+    {
+        $this->documentService = $documentService;
+    }
+
+    /**
+     * Terbitkan dokumen surat resmi (PDF & DOCX jika tersedia) dan catat ke Buku Agenda Surat.
+     */
     public function generatePdf(LetterRequest $letterRequest): string
     {
-        $options = new Options();
-        $options->set('isRemoteEnabled', true);
-        $options->set('defaultFont', 'Helvetica');
+        if (empty($letterRequest->qr_code_token)) {
+            $letterRequest->update([
+                'qr_code_token' => Str::random(32),
+            ]);
+        }
 
-        $dompdf = new Dompdf($options);
-
-        $token = Str::random(32);
-        $verificationUrl = route('layanan.verifikasi', $token);
-
-        $html = view('pdf.letter', [
-            'letter' => $letterRequest,
-            'token' => $token,
-            'verificationUrl' => $verificationUrl,
-            'date' => now()->translatedFormat('d F Y'),
-        ])->render();
-
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->render();
-
-        $filename = 'surat_' . Str::slug($letterRequest->request_number) . '.pdf';
-        $path = 'letters/' . $filename;
-
-        Storage::disk('public')->put($path, $dompdf->output());
+        $paths = $this->documentService->generate($letterRequest);
 
         $letterRequest->update([
-            'pdf_path' => $path,
-            'qr_code_token' => $token,
             'status' => 'completed',
+            'completed_at' => now(),
+            'signed_by' => auth()->id() ?? $letterRequest->signed_by,
+            'signed_at' => now(),
         ]);
 
-        return $path;
+        return $paths['pdf_path'] ?? '';
     }
 }
