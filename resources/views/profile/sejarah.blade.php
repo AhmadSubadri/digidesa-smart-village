@@ -47,7 +47,7 @@
                 <div class="relative border-l-2 border-blue-600 ml-4 md:ml-32 space-y-10">
                     @php
                         $timeline = [
-                            ['year' => '1946', 'title' => 'Penggabungan 4 Kelurahan', 'desc' => 'Maklumat DIY No. 5 Tahun 1946 secara resmi menggabungkan 4 kelurahan lama menjadi {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}.'],
+                            ['year' => '1946', 'title' => 'Penggabungan 4 Kelurahan', 'desc' => 'Maklumat DIY No. 5 Tahun 1946 secara resmi menggabungkan 4 kelurahan lama menjadi ' . setting('village_name', 'Pemerintah Desa') . '.'],
                             ['year' => '1975', 'title' => 'Pembangunan Kantor Kalurahan Baru', 'desc' => 'Peresmian kantor balai desa di lokasi strategis Jalan Manggis No. 1 Condongcatur.'],
                             ['year' => '1999', 'title' => 'Perkembangan Kawasan Pendidikan', 'desc' => 'Condongcatur berkembang pesat sebagai kawasan perguruan tinggi terbesar di DIY (UNY, UPN, UII, AMIKOM).'],
                             ['year' => '2020', 'title' => 'Predikat Desa Mandiri (IDM)', 'desc' => 'Meraih status Desa Mandiri dari Kementerian Desa dengan skor Indeks Desa Membangun tertinggi.'],

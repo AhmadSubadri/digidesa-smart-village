@@ -35,12 +35,12 @@
     const map = L.map('map').setView([-7.7500, 110.3833], 14);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors | {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}'
+        attribution: '&copy; OpenStreetMap contributors | ' . setting('village_name', 'Pemerintah Desa') . ''
     }).addTo(map);
 
     // Kantor Kalurahan Marker
     L.marker([-7.7500, 110.3833]).addTo(map)
-        .bindPopup('<b>Kantor {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}</b><br>Jl. Manggis No. 1, Depok, Sleman')
+        .bindPopup('<b>Kantor ' . setting('village_name', 'Pemerintah Desa') . '</b><br>Jl. Manggis No. 1, Depok, Sleman')
         .openPopup();
 </script>
 @endpush

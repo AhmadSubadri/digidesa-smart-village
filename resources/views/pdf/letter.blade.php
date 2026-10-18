@@ -49,7 +49,7 @@
 
     {{-- PEMBUKA DAN ISI SURAT --}}
     <p style="text-align: justify; text-indent: 30px; margin-bottom: 12px;">
-        Yang bertanda tangan di bawah ini {{ setting('leader_title', 'Kepala Desa') }} {{ setting('village_name', setting('site_name', 'Desa')) }}, Kecamatan {{ setting('district_name', 'Kecamatan') }}, Kabupaten {{ setting('regency_name', 'Kabupaten') }}, menerangkan dengan sebenarnya bahwa:
+        Yang bertanda tangan di bawah ini {{ setting('leader_title', 'Kepala Desa') }} ' . setting('village_name', 'Pemerintah Desa') . ', Kecamatan {{ setting('district_name', 'Kecamatan') }}, Kabupaten {{ setting('regency_name', 'Kabupaten') }}, menerangkan dengan sebenarnya bahwa:
     </p>
 
     <table class="content-table">

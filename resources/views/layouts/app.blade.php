@@ -141,8 +141,8 @@
 
         {{-- MAIN NAVBAR --}}
         <nav
-            class="navbar bg-[#0F294A] dark:bg-slate-900 text-white transition-all duration-300 border-b border-blue-900/50 dark:border-slate-800"
-            :class="{ 'shadow-2xl bg-[#0b1f38]/95 backdrop-blur-md': scrolled }"
+            class="navbar bg-[#08101E]/95 dark:bg-slate-950/95 backdrop-blur-xl text-white transition-all duration-300 border-b border-white/[0.08] dark:border-slate-800/80"
+            :class="{ 'shadow-2xl bg-[#060B14]/98 backdrop-blur-md': scrolled }"
             aria-label="Navigasi Utama"
         >
             <div class="container-sid">
@@ -343,24 +343,25 @@
         class="popup-overlay"
         @click.self="show = false; sessionStorage.setItem('popup_{{ $popupAnnouncement->id }}_dismissed', '1')"
     >
-        <div class="popup-modal" @click.stop>
-            <div class="popup-urgent-bar">
-                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"/></svg>
-                {{ strtoupper($popupAnnouncement->priority) }}
+        <div class="popup-modal rounded-[2rem] overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl" @click.stop>
+            <div class="popup-urgent-bar bg-gradient-to-r from-red-600 to-rose-700 text-white px-6 py-2.5 text-xs font-black tracking-wider uppercase flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"/></svg>
+                <span>PEMBERITAHUAN MENDESAK</span>
             </div>
-            <div class="popup-body">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">{{ $popupAnnouncement->title }}</h3>
-                <div class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed prose prose-sm max-w-none">
+            <div class="popup-body p-6 sm:p-8">
+                <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mb-3 tracking-tight">{{ $popupAnnouncement->title }}</h3>
+                <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed prose prose-sm max-w-none">
                     {!! $popupAnnouncement->content !!}
                 </div>
-                <div class="flex justify-end gap-2 mt-4">
+                <div class="flex items-center justify-end gap-3 mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
                     <button
                         @click="show = false; sessionStorage.setItem('popup_{{ $popupAnnouncement->id }}_dismissed', '1')"
-                        class="btn btn-outline text-sm">
+                        class="px-5 py-2.5 rounded-2xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-bold text-xs hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                         Tutup
                     </button>
-                    <a href="{{ route('pengumuman.show', $popupAnnouncement->id) }}" class="btn btn-primary text-sm">
-                        Selengkapnya
+                    <a href="{{ route('pengumuman.show', $popupAnnouncement->id) }}" class="px-6 py-2.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-black text-xs shadow-lg shadow-blue-600/25 transition-all hover:scale-105">
+                        Lihat Rincian
                     </a>
                 </div>
             </div>
