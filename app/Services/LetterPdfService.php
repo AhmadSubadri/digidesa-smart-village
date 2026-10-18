@@ -34,6 +34,13 @@ class LetterPdfService
             'signed_at' => now(),
         ]);
 
+        // Auto trigger WhatsApp notification to citizen if enabled
+        try {
+            app(WhatsappService::class)->sendLetterApproved($letterRequest);
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::warning("WhatsApp dispatch failed: " . $e->getMessage());
+        }
+
         return $paths['pdf_path'] ?? '';
     }
 }

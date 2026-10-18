@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class LetterRequest extends Model
 {
@@ -65,7 +66,7 @@ class LetterRequest extends Model
         return $this->belongsTo(User::class, 'rt_rw_id');
     }
 
-    public function register(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function register(): HasOne
     {
         return $this->hasOne(LetterRegister::class);
     }
@@ -75,13 +76,59 @@ class LetterRequest extends Model
         return $this->hasMany(LetterLog::class)->orderBy('created_at');
     }
 
+    // Accessors for easy usage across views, pdf, and whatsapp notifications
+    public function getApplicantNameAttribute(): string
+    {
+        return $this->resident?->full_name 
+            ?? $this->wargaUser?->full_name 
+            ?? $this->form_data['applicant_name'] 
+            ?? $this->form_data['nama'] 
+            ?? 'Warga';
+    }
+
+    public function getNikAttribute(): string
+    {
+        return $this->resident?->nik 
+            ?? $this->wargaUser?->nik 
+            ?? $this->form_data['nik'] 
+            ?? '-';
+    }
+
+    public function getPhoneAttribute(): string
+    {
+        return $this->resident?->phone 
+            ?? $this->wargaUser?->phone 
+            ?? $this->form_data['phone'] 
+            ?? $this->form_data['telepon'] 
+            ?? '';
+    }
+
+    public function getPurposeAttribute(): string
+    {
+        return $this->form_data['purpose'] 
+            ?? $this->form_data['keperluan'] 
+            ?? $this->notes 
+            ?? 'Urusan Administrasi';
+    }
+
+    public function getVerificationUrlAttribute(): string
+    {
+        $token = $this->qr_code_token ?? $this->request_number;
+        return route('verifikasi.surat', ['token' => $token]);
+    }
+
     protected static function boot()
     {
         parent::boot();
         static::creating(function ($model) {
-            $model->request_number = 'REQ-' . now()->format('Ymd') . '-' . str_pad(
-                static::whereDate('created_at', today())->count() + 1, 4, '0', STR_PAD_LEFT
-            );
+            if (empty($model->request_number)) {
+                $model->request_number = 'REQ-' . now()->format('Ymd') . '-' . str_pad(
+                    static::whereDate('created_at', today())->count() + 1, 4, '0', STR_PAD_LEFT
+                );
+            }
+            if (empty($model->qr_code_token)) {
+                $model->qr_code_token = \Illuminate\Support\Str::random(32);
+            }
         });
     }
 }

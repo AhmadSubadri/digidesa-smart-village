@@ -108,6 +108,13 @@ class LetterController extends Controller
             'created_at' => now(),
         ]);
 
+        // Auto send WhatsApp notification
+        try {
+            app(\App\Services\WhatsappService::class)->sendLetterSubmitted($letterReq);
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::warning("WhatsApp dispatch error: " . $e->getMessage());
+        }
+
         return redirect()->route('warga.surat.show', $letterReq->id)
             ->with('success', 'Permohonan surat berhasil dikirim! Nomor Tiket: ' . $letterReq->request_number);
     }

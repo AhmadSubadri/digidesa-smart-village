@@ -4,15 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class LandRecord extends Model
 {
     protected $table = 'land_records';
 
     protected $fillable = [
-        'certificate_number', 'owner_resident_id', 'owner_name',
-        'land_type', 'area_m2', 'address', 'padukuhan_id',
-        'ownership_type', 'coordinates', 'tax_number', 'notes', 'status',
+        'certificate_number',
+        'kohir_number',
+        'persil_number',
+        'land_class',
+        'owner_resident_id',
+        'owner_name',
+        'land_type',
+        'area_m2',
+        'address',
+        'padukuhan_id',
+        'ownership_type',
+        'usage_type',
+        'coordinates',
+        'tax_number',
+        'notes',
+        'status',
     ];
 
     protected $casts = [
@@ -31,5 +45,10 @@ class LandRecord extends Model
     public function padukuhan(): BelongsTo
     {
         return $this->belongsTo(Padukuhan::class);
+    }
+
+    public function mutations(): HasMany
+    {
+        return $this->hasMany(LandMutation::class)->orderBy('mutation_date', 'desc');
     }
 }

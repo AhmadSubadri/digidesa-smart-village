@@ -115,6 +115,10 @@ Route::prefix('layanan')->name('layanan.')->group(function () {
     Route::get('/verifikasi/{token}', [ServiceController::class, 'verifikasi'])->name('verifikasi');
 });
 
+// Verifikasi Surat & Dokumen Resmi (Public Anti-Tamper)
+Route::get('/verifikasi/surat/{token}', [ServiceController::class, 'verifikasi'])->name('verifikasi.surat');
+Route::get('/verifikasi/{token}', [ServiceController::class, 'verifikasi'])->name('verifikasi.direct');
+
 // Pengaduan
 Route::prefix('pengaduan')->name('pengaduan.')->group(function () {
     Route::get('/', [ComplaintController::class, 'index'])->name('index');
