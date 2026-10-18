@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Layanan Publik Mandiri')
-@section('description', 'Portal layanan administrasi publik dan permohonan surat keterangan Kalurahan Condongcatur.')
+@section('description', 'Portal layanan administrasi publik dan permohonan surat keterangan {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}.')
 
 @section('content')
 <div class="breadcrumb-section">
@@ -21,7 +21,7 @@
         {{-- Banner Portal Warga CTA --}}
         <div class="bg-gradient-to-r from-blue-900 to-indigo-900 rounded-3xl p-8 md:p-12 text-white shadow-xl mb-12 flex flex-col md:flex-row items-center justify-between gap-8">
             <div class="max-w-2xl">
-                <span class="badge badge-warning mb-3">Portal Warga Condongcatur</span>
+                <span class="badge badge-warning mb-3">Portal Layanan Mandiri Warga</span>
                 <h2 class="text-3xl font-extrabold mb-3">Pengurusan Surat Lebih Cepat & Praktis secara Online</h2>
                 <p class="text-blue-100 text-sm leading-relaxed">
                     Masuk ke Portal Warga menggunakan NIK untuk mengajukan permohonan surat keterangan, melacak status, dan mengunduh surat ber-QR Code resmi.

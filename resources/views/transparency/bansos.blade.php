@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Transparansi Bantuan Sosial')
-@section('description', 'Informasi program dan transparansi penerima bantuan sosial di Condongcatur.')
+@section('description', 'Informasi program dan transparansi penerima bantuan sosial di Desa.')
 
 @section('content')
 <div class="breadcrumb-section">

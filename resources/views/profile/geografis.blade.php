@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Geografis & Peta Wilayah')
-@section('description', 'Kondisi geografis, batas wilayah, dan data padukuhan Kalurahan Condongcatur, Sleman.')
+@section('description', 'Kondisi geografis, batas wilayah, dan data padukuhan {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}, Sleman.')
 
 @section('content')
 <div class="breadcrumb-section">
@@ -51,7 +51,7 @@
 
         {{-- Padukuhan Table --}}
         <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-            <h2 class="text-xl font-bold text-gray-900 mb-6">Daftar 18 Padukuhan di Condongcatur</h2>
+            <h2 class="text-xl font-bold text-gray-900 mb-6">Daftar Dusun & Padukuhan Desa</h2>
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-sm text-gray-600">
                     <thead class="bg-slate-50 text-gray-900 font-bold border-b border-gray-100">

@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('title', 'Potensi UMKM Desa')
-@section('description', 'Katalog Usaha Mikro Kecil dan Menengah (UMKM) Kalurahan Condongcatur.')
+@section('description', 'Katalog Usaha Mikro Kecil dan Menengah (UMKM) {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}.')
 
 @section('content')
 <div class="breadcrumb-section">
     <div class="container-sid">
-        <h1 class="text-3xl md:text-4xl font-extrabold text-white">Potensi UMKM Condongcatur</h1>
+        <h1 class="text-3xl md:text-4xl font-extrabold text-white">Potensi UMKM Wilayah Desa</h1>
         <div class="breadcrumb">
             <a href="{{ route('home') }}">Beranda</a>
             <span class="sep">/</span>

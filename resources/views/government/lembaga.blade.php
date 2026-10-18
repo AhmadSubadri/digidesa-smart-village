@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Lembaga Kalurahan')
-@section('description', 'Daftar lembaga desa di Kalurahan Condongcatur (BPKal, LPMK, PKK, Karang Taruna, Linmas, dll).')
+@section('description', 'Daftar lembaga desa di {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }} (BPKal, LPMK, PKK, Karang Taruna, Linmas, dll).')
 
 @section('content')
 <div class="breadcrumb-section">

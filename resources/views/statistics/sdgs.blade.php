@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('title', 'SDGs Desa')
-@section('description', 'Capaian 18 Tujuan Pembangunan Berkelanjutan (SDGs Desa) Kalurahan Condongcatur.')
+@section('description', 'Capaian 18 Tujuan Pembangunan Berkelanjutan (SDGs Desa) {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}.')
 
 @section('content')
 <div class="breadcrumb-section">
     <div class="container-sid">
-        <h1 class="text-3xl md:text-4xl font-extrabold text-white">SDGs Desa Condongcatur</h1>
+        <h1 class="text-3xl md:text-4xl font-extrabold text-white">SDGs Desa {{ setting('village_name', setting('site_name', 'Desa')) }}</h1>
         <div class="breadcrumb">
             <a href="{{ route('home') }}">Beranda</a>
             <span class="sep">/</span>

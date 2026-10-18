@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', isset($category) ? 'Berita Kategori ' . $category->name : 'Berita & Artikel')
-@section('description', 'Daftar berita, artikel, dan kabar terbaru seputar Kalurahan Condongcatur, Sleman.')
+@section('description', 'Daftar berita, artikel, dan kabar terbaru seputar {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}, Sleman.')
 
 @section('content')
 

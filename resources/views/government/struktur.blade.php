@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Struktur Organisasi')
-@section('description', 'Bagan struktur organisasi tata kerja Kalurahan Condongcatur, Sleman.')
+@section('description', 'Bagan struktur organisasi tata kerja {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}, Sleman.')
 
 @section('content')
 <div class="breadcrumb-section">
@@ -20,14 +20,14 @@
 <div class="section-py">
     <div class="container-sid">
         <div class="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100 text-center">
-            <h2 class="text-2xl font-bold text-gray-900 mb-8">Bagan Struktur Organisasi Kalurahan Condongcatur</h2>
+            <h2 class="text-2xl font-bold text-gray-900 mb-8">Bagan Struktur Organisasi {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}</h2>
 
             {{-- Org Chart Cards --}}
             <div class="max-w-md mx-auto mb-8">
                 <div class="bg-gradient-to-br from-blue-900 to-blue-800 text-white rounded-2xl p-6 shadow-md">
                     <div class="text-xs uppercase font-bold tracking-widest text-amber-400 mb-1">Pimpinan Utama</div>
                     <h3 class="text-xl font-extrabold">{{ $lurah?->name ?? 'Drs. H. Ahmad Mukhlis, M.Si' }}</h3>
-                    <p class="text-sm text-blue-200 mt-0.5">Lurah Condongcatur</p>
+                    <p class="text-sm text-blue-200 mt-0.5">{{ setting('leader_title', 'Kepala Desa') }} {{ setting('village_name', setting('site_name', 'Desa')) }}</p>
                 </div>
             </div>
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Galeri Dokumentasi')
-@section('description', 'Dokumentasi kegiatan dan foto-foto Kalurahan Condongcatur.')
+@section('description', 'Dokumentasi kegiatan dan foto-foto {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}.')
 
 @section('content')
 <div class="breadcrumb-section">

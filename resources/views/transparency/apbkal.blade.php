@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Transparansi APBKal')
-@section('description', 'Keterbukaan Informasi Anggaran Pendapatan dan Belanja Kalurahan (APBKal) Condongcatur.')
+@section('description', 'Keterbukaan Informasi Anggaran Pendapatan dan Belanja Kalurahan (APBKal) Desa.')
 
 @section('content')
 <div class="breadcrumb-section">

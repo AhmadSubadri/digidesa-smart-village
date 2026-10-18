@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Lacak Pengaduan')
-@section('description', 'Status penanganan pengaduan warga Condongcatur.')
+@section('description', 'Status penanganan pengaduan warga Desa.')
 
 @section('content')
 <div class="breadcrumb-section">

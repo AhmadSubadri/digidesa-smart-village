@@ -108,7 +108,7 @@
                     @endphp
                     <div class="overflow-hidden whitespace-nowrap flex-1 text-slate-300 text-[11px] font-medium"
                          x-data="{
-                             items: {{ json_encode($tickerAnnouncements->isEmpty() ? ['Selamat datang di Portal Informasi & Layanan Mandiri Digital Kalurahan Condongcatur', 'Pelayanan administrasi kependudukan mandiri online 24 jam nonstop', 'Transparansi anggaran dan publikasi resmi pemerintahan kalurahan'] : $tickerAnnouncements->pluck('title')->toArray()) }},
+                             items: {{ json_encode($tickerAnnouncements->isEmpty() ? ['Selamat datang di Portal Informasi & Layanan Mandiri Digital ' . setting('village_name', setting('site_name', 'Pemerintah Desa')), 'Pelayanan administrasi kependudukan mandiri online 24 jam nonstop', 'Transparansi anggaran dan publikasi resmi pemerintahan kalurahan'] : $tickerAnnouncements->pluck('title')->toArray()) }},
                              current: 0,
                              init() {
                                  setInterval(() => {

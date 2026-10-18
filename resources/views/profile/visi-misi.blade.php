@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Visi & Misi')
-@section('description', 'Visi dan Misi Pembangunan Kalurahan Condongcatur, Kapanewon Depok, Kabupaten Sleman.')
+@section('description', 'Visi dan Misi Pembangunan {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}, Kapanewon Depok, Kabupaten Sleman.')
 
 @section('content')
 <div class="breadcrumb-section">
@@ -26,10 +26,10 @@
                 <div class="absolute top-0 right-0 -mt-10 -mr-10 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
                 <div class="relative z-10 text-center">
                     <span class="inline-block px-4 py-1.5 rounded-full bg-amber-400 text-amber-950 font-bold text-xs uppercase tracking-widest mb-4">
-                        Visi Kalurahan Condongcatur
+                        Visi {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}
                     </span>
                     <blockquote class="text-2xl md:text-3xl font-extrabold leading-relaxed font-primary">
-                        "Terwujudnya Kalurahan Condongcatur yang Mandiri, Sejahtera, Berbudaya, dan Berkelanjutan Berlandaskan Semangat Gotong Royong"
+                        "Terwujudnya {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }} yang Mandiri, Sejahtera, Berbudaya, dan Berkelanjutan Berlandaskan Semangat Gotong Royong"
                     </blockquote>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                 <div class="text-center mb-10">
                     <div class="section-header-label justify-center">Program Kerja Utama</div>
                     <h2 class="section-title">Misi Pembangunan</h2>
-                    <p class="section-subtitle">Langkah strategis dalam mewujudkan visi Kalurahan Condongcatur</p>
+                    <p class="section-subtitle">Langkah strategis dalam mewujudkan visi {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Indeks Desa Membangun (IDM)')
-@section('description', 'Capaian dan indikator Indeks Desa Membangun Kalurahan Condongcatur.')
+@section('description', 'Capaian dan indikator Indeks Desa Membangun {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}.')
 
 @section('content')
 <div class="breadcrumb-section">

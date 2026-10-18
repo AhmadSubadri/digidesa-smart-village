@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('title', 'Sejarah Desa')
-@section('description', 'Sejarah dan asal-usul ditemukannya Kalurahan Condongcatur sejak berdirinya pada tahun 1946.')
+@section('description', 'Sejarah dan asal-usul ditemukannya {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }} sejak berdirinya pada tahun 1946.')
 
 @section('content')
 <div class="breadcrumb-section">
     <div class="container-sid">
-        <h1 class="text-3xl md:text-4xl font-extrabold text-white">Sejarah Kalurahan Condongcatur</h1>
+        <h1 class="text-3xl md:text-4xl font-extrabold text-white">Sejarah {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}</h1>
         <div class="breadcrumb">
             <a href="{{ route('home') }}">Beranda</a>
             <span class="sep">/</span>
@@ -26,7 +26,7 @@
                 </h2>
                 <div class="prose prose-blue max-w-none text-gray-600 leading-relaxed space-y-4">
                     <p>
-                        Kalurahan Condongcatur terbentuk berdasarkan <strong>Maklumat Pemerintah Daerah Istimewa Yogyakarta Nomor 5 Tahun 1946</strong> tentang Penggabungan Kelurahan-Kelurahan. Sebelum terbentuk Kalurahan Condongcatur, wilayah ini terdiri dari 4 (empat) kelurahan lama yaitu:
+                        {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }} terbentuk berdasarkan <strong>Maklumat Pemerintah Daerah Istimewa Yogyakarta Nomor 5 Tahun 1946</strong> tentang Penggabungan Kelurahan-Kelurahan. Sebelum terbentuk {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}, wilayah ini terdiri dari 4 (empat) kelurahan lama yaitu:
                     </p>
                     <ul class="list-disc pl-6 space-y-2">
                         <li><strong>Kelurahan Manukberi</strong> (kini Padukuhan Gejayan, Mrican, Soropadan)</li>
@@ -47,11 +47,11 @@
                 <div class="relative border-l-2 border-blue-600 ml-4 md:ml-32 space-y-10">
                     @php
                         $timeline = [
-                            ['year' => '1946', 'title' => 'Penggabungan 4 Kelurahan', 'desc' => 'Maklumat DIY No. 5 Tahun 1946 secara resmi menggabungkan 4 kelurahan lama menjadi Kalurahan Condongcatur.'],
+                            ['year' => '1946', 'title' => 'Penggabungan 4 Kelurahan', 'desc' => 'Maklumat DIY No. 5 Tahun 1946 secara resmi menggabungkan 4 kelurahan lama menjadi {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}.'],
                             ['year' => '1975', 'title' => 'Pembangunan Kantor Kalurahan Baru', 'desc' => 'Peresmian kantor balai desa di lokasi strategis Jalan Manggis No. 1 Condongcatur.'],
                             ['year' => '1999', 'title' => 'Perkembangan Kawasan Pendidikan', 'desc' => 'Condongcatur berkembang pesat sebagai kawasan perguruan tinggi terbesar di DIY (UNY, UPN, UII, AMIKOM).'],
                             ['year' => '2020', 'title' => 'Predikat Desa Mandiri (IDM)', 'desc' => 'Meraih status Desa Mandiri dari Kementerian Desa dengan skor Indeks Desa Membangun tertinggi.'],
-                            ['year' => '2025', 'title' => 'Era Digitalisasi Smart Village', 'desc' => 'Peluncuran Sistem Informasi Desa v2.0 (Condongcatur Digital) untuk transparansi dan layanan mandiri warga.'],
+                            ['year' => '2025', 'title' => 'Era Digitalisasi Smart Village', 'desc' => 'Peluncuran Sistem Informasi Desa v2.0 (DesaHub Digital) untuk transparansi dan layanan mandiri warga.'],
                         ];
                     @endphp
 

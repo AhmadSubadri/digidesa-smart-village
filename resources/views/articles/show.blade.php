@@ -25,7 +25,7 @@
                     <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold text-white text-xs">
                         {{ strtoupper(substr($article->author?->name ?? 'Admin', 0, 2)) }}
                     </div>
-                    <span>{{ $article->author?->name ?? 'Redaksi Condongcatur' }}</span>
+                    <span>{{ $article->author?->name ?? 'Redaksi ' . setting('site_name', 'DesaHub') }}</span>
                 </div>
                 <span>•</span>
                 <span>{{ $article->published_at?->translatedFormat('d F Y') }}</span>

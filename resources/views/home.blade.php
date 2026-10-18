@@ -831,7 +831,7 @@
                             APBKal {{ $budget?->fiscal_year ?? date('Y') }} — Akuntabel & Terbuka
                         </h2>
                         <p class="text-xs sm:text-sm text-slate-300 mt-1">
-                            Laporan realisasi dan alokasi Anggaran Pendapatan & Belanja Kalurahan Condongcatur.
+                            Laporan realisasi dan alokasi Anggaran Pendapatan & Belanja {{ setting('village_name', setting('site_name', 'Pemerintah Desa')) }}.
                         </p>
                     </div>
                     <a href="{{ route('transparansi.apbkal') }}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white text-slate-950 hover:bg-blue-50 text-xs font-black shadow-lg transition-all self-start lg:self-auto shrink-0">
