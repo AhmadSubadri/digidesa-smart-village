@@ -19,6 +19,7 @@ use App\Http\Controllers\PotentialController;
 use App\Http\Controllers\Warga\AuthController as WargaAuthController;
 use App\Http\Controllers\Warga\DashboardController as WargaDashboardController;
 use App\Http\Controllers\Warga\LetterController;
+use App\Http\Controllers\Admin\PrintBookController;
 use Illuminate\Support\Facades\Route;
 
 // ============================================================
@@ -118,6 +119,13 @@ Route::prefix('layanan')->name('layanan.')->group(function () {
 // Verifikasi Surat & Dokumen Resmi (Public Anti-Tamper)
 Route::get('/verifikasi/surat/{token}', [ServiceController::class, 'verifikasi'])->name('verifikasi.surat');
 Route::get('/verifikasi/{token}', [ServiceController::class, 'verifikasi'])->name('verifikasi.direct');
+
+// Cetak Buku Administrasi Resmi (Standar Permendagri No. 47/2016 & No. 1/2016)
+Route::prefix('admin/cetak')->name('admin.cetak.')->group(function () {
+    Route::get('/buku-agenda-surat', [PrintBookController::class, 'bukuAgendaSurat'])->name('buku-agenda-surat');
+    Route::get('/buku-letter-c', [PrintBookController::class, 'bukuLetterC'])->name('buku-letter-c');
+    Route::get('/buku-inventaris-aset', [PrintBookController::class, 'bukuInventarisAset'])->name('buku-inventaris-aset');
+});
 
 // Pengaduan
 Route::prefix('pengaduan')->name('pengaduan.')->group(function () {
