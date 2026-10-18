@@ -78,6 +78,21 @@ class ComprehensiveDemoSeeder extends Seeder
             ]
         );
 
+        // Akun Login Demo Layanan Mandiri Warga
+        \App\Models\WargaUser::firstOrCreate(
+            ['nik' => '3404071203850001'],
+            [
+                'resident_id' => $resident1->id,
+                'name' => 'Budi Santoso, S.T.',
+                'email' => 'budi.santoso@warga.desa.id',
+                'phone' => '081234567890',
+                'password' => \Illuminate\Support\Facades\Hash::make('password'),
+                'is_verified' => true,
+                'verified_at' => now(),
+                'is_active' => true,
+            ]
+        );
+
         // 3. Sample Buku Tanah & Letter C (Permendagri No. 47/2016)
         $land1 = LandRecord::firstOrCreate(
             ['kohir_number' => '0128', 'persil_number' => '14-A'],

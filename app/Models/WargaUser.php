@@ -21,7 +21,6 @@ class WargaUser extends Authenticatable
     protected $hidden = ['password', 'remember_token'];
 
     protected $casts = [
-        'nik' => 'encrypted',
         'is_verified' => 'boolean',
         'is_active' => 'boolean',
         'verified_at' => 'datetime',
